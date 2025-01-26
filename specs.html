@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Specs</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f0f0f0;
+            }
+
+            h1 {
+                text-align: center;
+                margin-top: 50px;
+            }
+
+            h2 {
+                text-align: center;
+                margin-top: 50px;
+            }
+
+            p {
+                margin-left: 50px;
+                margin-right: 50px;
+            }
+
+            ul {
+                margin-left: calc(10% + 50px);
+                margin-right: 10%;
+            }
+
+            li {
+                margin-top: 10px;
+            }
+
+            h3 {
+                margin-top: 10px;
+            }
+
+            input[type=checkbox] {
+                margin-right: 30px;
+                margin-left: 10%;
+                size: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>
+            LIST OF PROJECT SPECIFICATIONS
+        </h1>
+        <h2>
+            Lab Reservation System
+        </h2>
+        <p>The following describes the features of a computer laboratory slot (seat) reservation web
+        application. Groups must include at least three computer labs in the system. The
+        minimum features required to be implemented for this project is as follows:</p>
+
+        <h3>
+            <input type="checkbox" unchecked>View Slot Availability
+        </h3>
+        <ul>
+            <li>
+                A user may choose a computer lab and see the current available seats of
+                the chosen lab. The user may opt to see the availability of the lab at other
+                times for the next 7 days. A user must be a student user to reserve a seat.
+            </li>
+            <li>
+                Note: Users may see who reserved a seat, as long as the reservee did not
+                make the reservation anonymously. Clicking on a user’s name should link
+                to that user’s profile. Availability must also update periodically so that the
+                user does not need to refresh every time.
+            </li>
+        </ul>
+        <h3>
+            <input type="checkbox" unchecked>Register
+        </h3>
+        <ul>
+            <li>
+                A visitor must register if they want to reserve a lab slot. Here, a visitor
+                must enter their DLSU email and a password. There should be 2 kinds of
+                accounts, the student who can reserve lab slots, and the lab technician
+                that can block a time slot for walk-in students.
+            </li>
+        </ul>
+        <h3>
+            <input type="checkbox" unchecked>Login
+        </h3>
+        <ul>
+            <li>
+                After registering properly, a visitor may log-in. Upon logging in, the option
+                to reserve a slot will be open. The user is given the option to be
+                “remembered” by the website. When the user chooses this option, every
+                log in and visit to the website will extend their “remember” period by 3
+                weeks.
+            </li>
+        </ul>
+        <h3>
+            <input type="checkbox" unchecked>Logout
+        </h3>
+        <ul>
+            <li>
+                The user may log out from their account. This should cut short the
+                “remember” period if it exists, and clears any session-related data.
+            </li>
+        </ul>
+        <h3>
+            <input type="checkbox" unchecked>Reserve
+        </h3>
+        <ul>
+            <li>
+                Students can reserve slots that have not yet been taken. Lab slots are in
+                intervals of 30 minutes. The student also has the option whether to reserve
+                anonymously or not. The student can reserve more than one slot, and all
+                the lab slots will be made under one reservation. A student may not reserve
+                a previously reserved slot.
+            </li>
+        </ul>
+        <h3>
+            <input type="checkbox" unchecked>Reserve for a student
+        </h3>
+        <ul>
+            <li>
+                Lab technicians can make a reservation for walk-in students.
+            </li>
+        </ul>
+        <h3>
+            <input type="checkbox" unchecked>Remove reservation
+        </h3>
+        <ul>
+            <li>
+                Lab technicians have the ability to remove reservations of students who
+                do not show up within 10 minutes of the reservation. This facility is only
+                available 10 minutes of the actual reservation time. This will cancel the
+                whole reservation.
+            </li>
+        </ul>
+        <h3>
+            <input type="checkbox" unchecked>Edit reservation
+        </h3>
+        <ul>
+            <li>
+                A student can edit reservations they previously made. Lab technicians are
+                able to edit any reservations.
+            </li>
+        </ul>
+        <h3>
+            <input type="checkbox" unchecked>See reservations
+        </h3>
+        <ul>
+            <li>
+                A user may check their reservations. They can see details such as the seat
+                number, the laboratory, the date and time of request, and the date and
+                time of reservation.
+            </li>
+        </ul>
+        <h3>
+            <input type="checkbox" unchecked>View / Edit User profile
+        </h3>
+        <ul>
+            <li>
+                Registered users may edit their own profile, which includes a profile
+                picture and description. Additionally, the profile should also list the
+                student’s current reservations. Users may also view another user’s public
+                profile, but they are not able to edit it.
+            </li>
+        </ul>
+        <h3>
+            <input type="checkbox" unchecked>Delete User Account
+        </h3>
+        <ul>
+            <li>
+                Students have the option to delete their own user, ultimately deleting their
+                account and cancelling any pending reservations they may have.
+            </li>
+        </ul>
+        <h3>
+            <input type="checkbox" unchecked>Search for users / free slots
+        </h3>
+        <ul>
+            <li>
+                Users can view all the available slots given a provided date and time, and
+                the lab.
+            </li>
+        </ul>
+        <h3>
+            <input type="checkbox" unchecked>General
+        </h3>
+        <ul>
+            <li>
+                Good user experience. Visitors can easily navigate without help, all
+                information is easy to access. Good visual design. Design suits the theme
+                of the application, and is cohesive and consistent across the whole
+                application
+            </li>
+        </ul>
+
+        <p>
+        <strong>IMPORTANT:</strong> Note that for every instance of a create feature that adds data in the
+        database of the web application, there should be corresponding features that will allow
+        the corresponding user to read, update, and delete the data from the database. For
+        example, if you have a feature that allows the user to create a post, the user should
+        also be allowed to read/view the post, update/edit the post, and delete/remove the
+        post.
+        </p>
+
+
+    </body>
+</html>
