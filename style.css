@@ -13,6 +13,19 @@ header {
 header h1 {
     margin: 0;
 }
+
+header h1 a {    
+    color: #fff;
+    margin-right: 15px;
+    display: inline-block;
+    padding: 8px 15px; 
+    text-decoration: none; 
+}
+
+header h1 a:hover {
+    background-color:   #0056b3; 
+    color: #f9f9f9; 
+}
 nav {
     margin-top: 10px;
 }
@@ -20,6 +33,13 @@ nav a {
     color: #fff;
     text-decoration: none;
     margin-right: 15px;
+    display: inline-block;
+    padding: 8px 15px; 
+    text-decoration: none; 
+}
+nav a:hover {
+    background-color:   #0056b3; 
+    color: #f9f9f9; 
 }
 main {
     padding: 20px;
@@ -96,7 +116,8 @@ input:hover, select:hover {
 }
 .card:hover {
     box-shadow: 0 5px 50px rgba(0, 0, 0, 0.2);
-}
+    scale: 1.03;
+}   
 .card h3 {
     margin: 0 0 10px;
 }
