@@ -79,3 +79,24 @@ form button {
 form button:hover {
     background-color: #0056b3;
 }
+input:hover, select:hover {
+    border-color: #007bff;
+}
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+.card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+.card:hover {
+    box-shadow: 0 5px 50px rgba(0, 0, 0, 0.2);
+}
+.card h3 {
+    margin: 0 0 10px;
+}
