@@ -83,7 +83,7 @@ export default function Reservations() {
     ));
 
     const reservationVisuals = reservations.map((reservation, index) => {
-        const deleteable = index < 3; // TODO: add logic for delete
+        const deleteable = index < 10; // TODO: add logic for delete
 
         return (
             <tr key={index} className="odd:bg-white even:bg-fieldgray hover:bg-bgpink">
