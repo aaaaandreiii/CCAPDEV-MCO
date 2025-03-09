@@ -1,2 +1,7 @@
 npm install
 npm start
+
+
+server.js - has the mongodb connection, router middleware
+
+routes folder - contain route handlers - POST, GET requests
