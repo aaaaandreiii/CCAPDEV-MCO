@@ -1,118 +1,135 @@
 import { useAuth } from '../../AuthProvider.jsx';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-
-import { IconEdit, IconTrash } from '@tabler/icons-react'
+import { IconEdit, IconTrash } from '@tabler/icons-react';
 
 export default function Reservations() {
     const navigate = useNavigate();
     
-    const [reservations, setReservations] = useState([]);
-    const [reservationVisuals, setReservationVisuals] = useState([]);
-
-    const header = [];
+    const [reservations, setReservations] = useState([null]); 
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const auth = useAuth();
 
     const columnHeader = [
-        {label: "User", accessor: "user"},
-        {label: "Room", accessor: "room"},
-        {label: "Seat", accessor: "seat"}, 
-        {label: "Reservation Date", accessor: "reserveDate"},
-        {label: "Timeslot", accessor: "timeslot"},
-        {label: "Timestamp", accessor: "timestamp"},
-        {label: "", accessor:"edit"},
-        {label: "", accessor:"cancel"}];
+        { label: "Name", accessor: "fullName" },
+        { label: "Laboratory", accessor: "labID" },
+        { label: "Seat", accessor: "seatNumber" }, 
+        { label: "Reservation Date", accessor: "formattedReservationDate" },
+        { label: "Timeslot", accessor: "timeSlot" },
+        { label: "Time of Request", accessor: "formattedCreatedAt" },
+        { label: "", accessor: "edit" },
+        { label: "", accessor: "cancel" }
+    ];
 
-    const getReservations = (() => {
-        //TODO: fetch reservation data
-
-        var tempReservations = [];
-        let currDate = new Date(Date.now())
-        let timestamp = currDate.toLocaleDateString(undefined, {year: 'numeric', month: 'long', day: 'numeric'}) + " " + currDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
-        
-        tempReservations.push({user:"john@dlsu.edu.ph", room: "G-306A", seat: "06", timestamp:  timestamp, reserveDate: "February 6, 2025", timeslot: ["16:30 - 17:00, 17:00 - 17:30"]})
-        tempReservations.push({user:"jane@dlsu.edu.ph", room: "G-306B", seat: "06", timestamp:  timestamp, reserveDate: "February 7, 2025", timeslot: ["07:00 - 07:30"]})
-        tempReservations.push({user:"mary@dlsu.edu.ph", room: "G-308", seat: "01", timestamp:  timestamp, reserveDate: "February 8, 2025", timeslot: ["12:00 - 12:30, 17:00 - 17:30"]})
-        tempReservations.push({user:"juan@dlsu.edu.ph", room: "G-306B", seat: "04", timestamp:  timestamp, reserveDate: "February 8, 2025", timeslot: ["13:00 - 13:30"]})
-        tempReservations.push({user:"jane@dlsu.edu.ph", room: "G-308", seat: "04", timestamp:  timestamp, reserveDate: "February 10, 2025", timeslot: ["08:00 - 08:30, 08:30 - 09:00"]})
-
-        setReservations(tempReservations);
-    });
-
-    for (let i = 0; i < columnHeader.length; i++) {
-        header.push(
-            <th key={columnHeader[i].accessor}
-                className={`font-semibold py-1 px-2`}>
-                {columnHeader[i].label}
-            </th>
-        );
-    }
-
-    const getReservationVisuals = (() => {
-        var visuals = [];
-
-        for (let i = 0; i < reservations.length; i++) {
-            var rowData = [];
-
-            for (var column of columnHeader) {
-                if (reservations[i].hasOwnProperty(column.accessor)) {
-                    rowData.push(
-                        <td key={column.accessor + "" + i}
-                            className='py-1 px-2'>
-                            {reservations[i][column.accessor]}
-                        </td>
-                    );
+    useEffect(() => {
+        const fetchReservations = async () => {
+            try {
+                const response = await fetch(`http://localhost:5000/api/reservations`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
                 }
+                const data = await response.json();
+
+                const formattedData = data.map((reservation) => ({
+                    ...reservation,
+                    fullName: `${reservation.userDetails.firstName} ${reservation.userDetails.lastName}`,
+                    formattedReservationDate: new Date(reservation.startTime).toLocaleString("en-US", { 
+                        month: "long",
+                        day: "2-digit",
+                        year: "numeric"
+                    }),
+                    timeSlot: `${new Date(reservation.startTime).toLocaleTimeString("en-US", { 
+                        hour12: false, 
+                        hour: "2-digit", 
+                        minute: "2-digit",
+                        timeZone: "Asia/Singapore"
+                    })} - ${new Date(reservation.endTime).toLocaleTimeString("en-US", { 
+                        hour12: false, 
+                        hour: "2-digit", 
+                        minute: "2-digit",
+                        timeZone: "Asia/Singapore"
+                    })}`,
+                    formattedCreatedAt: new Date(reservation.createdAt).toLocaleString("en-US", {
+                        year: "numeric",
+                        month: "2-digit",
+                        day: "2-digit",
+                        hour12: false, 
+                        hour: "2-digit", 
+                        minute: "2-digit",
+                        timeZone: "Asia/Singapore"
+                    })
+                }));
+
+                setReservations(formattedData);
+            } catch (err) {
+                console.error("Error fetching reservations:", err);
+                setError(err.message);
+            } finally {
+                setLoading(false);
             }
+        };
 
-            //TODO: implement logic to check if time is within 10 minutes of reservation
-            var deleteable = i < 2;
+        fetchReservations();
+    }, [auth.user]);
 
-            visuals.push(
-                <tr key={"data" + i} 
-                    className={`odd:bg-white even:bg-fieldgray hover:bg-bgpink`}>
-                    {rowData}
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error}</p>;
 
-                    <td>
-                        <IconEdit stroke={2} className='cursor-pointer' onClick={(e) => {navigate("/edit/abc")}}/>
-                    </td>
-                    {
-                        deleteable ? 
-                            <td>
-                                <IconTrash stroke={2} color='#cc5f5f' className='cursor-pointer' onClick={(e) => {if (confirm("Do you want to delete this reservation?")) console.log("deleted reservation")}}/>
-                            </td>
-                        : <td></td>
-                    }
-                </tr>
-            )
-        }
+    const header = columnHeader.map((col) => (
+        <th key={col.accessor} className="font-semibold py-1 px-2">
+            {col.label}
+        </th>
+    ));
 
-        setReservationVisuals(visuals);
+    const reservationVisuals = reservations.map((reservation, index) => {
+        const deleteable = index < 3; // TODO: add logic for delete
+
+        return (
+            <tr key={index} className="odd:bg-white even:bg-fieldgray hover:bg-bgpink">
+                {columnHeader.map((column) =>
+                    reservation.hasOwnProperty(column.accessor) ? (
+                        <td key={`${column.accessor}-${index}`} className="py-1 px-2">
+                            {reservation[column.accessor]}
+                        </td>
+                    ) : null
+                )}
+
+                <td>
+                    {/*TODO: change navigate link to some edit*/}
+                    <IconEdit stroke={2} className="cursor-pointer" onClick={() => navigate("/edit/abc")} />
+                </td>
+                <td>
+                    {deleteable && (
+                        <IconTrash 
+                            stroke={2} 
+                            color="#cc5f5f" 
+                            className="cursor-pointer" 
+                            onClick={() => {
+                                if (window.confirm("Do you want to delete this reservation?")) {
+                                    console.log("Deleted reservation");
+                                }
+                            }} 
+                        />
+                    )}
+                </td>
+            </tr>
+        );
     });
-
-    useEffect(() => {
-        getReservations();
-    }, []);
-
-    useEffect(() => {
-        getReservationVisuals();
-    }, [reservations]);
 
     return (
         <div className="flex flex-col border-2 border-bgblue mt-4 p-4 rounded-lg">
-            <div className='font-bold text-[24px] text-fontgray pb-1.5'>
+            <div className="font-bold text-[24px] text-fontgray pb-1.5">
                 Reservations
             </div>
-            <table className={`w-3/5 table-auto my-3 rounded-sm bg-white border-solid border-2 border-bgblue text-left text-fontgray border-separate border-spacing-0`}>
-                <thead className="shadow shadow-sm">
-                    <tr className={`bg-bgblue`}>
-                        {header}
-                    </tr>
-                </thead>
-                <tbody>
-                    {reservationVisuals}
-                </tbody>
-            </table>
+            {loading ? <p>Loading reservations...</p> : error ? <p className="text-red-500">Error: {error}</p> : (
+                <table className="w-3/5 table-auto my-3 rounded-sm bg-white border-solid border-2 border-bgblue text-left text-fontgray border-separate border-spacing-0">
+                    <thead className="shadow shadow-sm">
+                        <tr className="bg-bgblue">{header}</tr>
+                    </thead>
+                    <tbody>{reservationVisuals}</tbody>
+                </table>
+            )}
         </div>
-        
     );
 }
