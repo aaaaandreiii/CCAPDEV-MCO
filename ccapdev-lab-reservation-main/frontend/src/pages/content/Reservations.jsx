@@ -123,7 +123,7 @@ export default function Reservations() {
                 Reservations
             </div>
             {loading ? <p>Loading reservations...</p> : error ? <p className="text-red-500">Error: {error}</p> : (
-                <table className="w-3/5 table-auto my-3 rounded-sm bg-white border-solid border-2 border-bgblue text-left text-fontgray border-separate border-spacing-0">
+                <table className="w-full table-auto my-3 rounded-sm bg-white border-solid border-2 border-bgblue text-left text-fontgray border-separate border-spacing-0">
                     <thead className="shadow shadow-sm">
                         <tr className="bg-bgblue">{header}</tr>
                     </thead>
