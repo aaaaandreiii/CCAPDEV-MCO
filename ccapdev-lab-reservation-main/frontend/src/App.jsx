@@ -16,7 +16,8 @@ import Root from './pages/Root.jsx';
 import Reserve from './pages/content/Reserve.jsx';
 import Reservations from './pages/content/Reservations.jsx';
 import Edit from './pages/content/Edit.jsx';
-import Profile from './pages/content/Profile.jsx'
+import Profile from './pages/content/Profile.jsx';
+import Users from './pages/content/Users.jsx';
 
 const router = createBrowserRouter(
         createRoutesFromElements(
@@ -30,8 +31,8 @@ const router = createBrowserRouter(
                         <Route path="/edit/:id" element={<Edit/>}/>
                         <Route path="/reservations" element={<Reservations />}/>
                         <Route path="/profile/:id" element={<Profile/>}/>
+                        <Route path="/users" element={<Users/>}/>
                     </Route>
-                    
                 </Route>
             </Route>
         )
