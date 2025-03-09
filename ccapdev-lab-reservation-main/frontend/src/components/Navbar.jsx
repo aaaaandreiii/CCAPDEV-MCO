@@ -22,7 +22,7 @@ export default function Navbar() {
                         Reserve
                     </div>
                     {
-                        auth.user == "lab" ? 
+                        auth.user.role == "technician" ? 
                             <div className="pr-4 hover:text-linkblue cursor-pointer"
                                 onClick={() => {navigate("/reservations")}}>
                                 Reservations
@@ -31,12 +31,16 @@ export default function Navbar() {
                     }
                     <div className="pr-4 hover:text-linkblue cursor-pointer"
                         onClick={() => {
-                            if (auth.user == "student")
+                            if (auth.user.role == "student")
                                 navigate("/profile/student")
-                            else if (auth.user == "lab")
+                            else if (auth.user.role == "technician")
                                 navigate("/profile/lab")
                             }}>
                         Profile
+                    </div>
+                    <div className="pr-4 hover:text-linkblue cursor-pointer"
+                        onClick={() => {navigate("/users")}}>
+                        Users
                     </div>
                 </div>
                 <div className="flex items-center justify-end col-start-3 mr-5 text-lg hover:text-linkblue cursor-pointer"
