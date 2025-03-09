@@ -1,39 +1,52 @@
-import { useContext, createContext, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useContext, createContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
-const AuthProvider = ({children}) => {
-    const [user, setUser] = useState(localStorage.getItem("user") || "");
+const AuthProvider = ({ children }) => {
+    const [user, setUser] = useState(() => {
+        return JSON.parse(localStorage.getItem("user")) ?? null;
+    });
     const navigate = useNavigate();
-
+    
     const loginAction = async (username, password, remember) => {
-        console.log(username)
-        console.log(password)
-        console.log(remember)
+        try {
+            const response = await fetch("http://localhost:5000/api/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email: username, password }) 
+            });
+    
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => null);
+                throw new Error(errorData?.message || "Invalid credentials");
+            }
+    
+            const data = await response.json();
+            console.log("Login response data:", data); 
+    
+            if (!data.user) {
+                console.error("No user data received!");
+                return;
+            }
+    
+            
+            setUser(data.user);
+            console.log("User set in state:", data.user);
 
-        // TODO: send login request to server
-
-
-        // TODO: check server response
-        // if response is ok
-        // TODO: replace this with actual logic
-        if (username == "lab") {
-            setUser("lab");
-            localStorage.setItem("user", "lab");
-        } else {
-            setUser("student");
-            localStorage.setItem("user", "student");
+            if(remember){
+                localStorage.setItem("user", JSON.stringify(data.user));
+                localStorage.setItem("token", data.token);
+            }
+            navigate("/home");
+        } catch (error) {
+            console.error("Login error:", error);
+            alert(error.message);
         }
-        
-        navigate("/home");
-
-        // else, alert wrong credentials
-        // alert('Incorrect credentials');
-    }
+    };
 
     const registerAction = async (username, password) => {
-        console.log(username)
+       console.log(username)
         console.log(password)
 
         // TODO: send register request to server
@@ -47,16 +60,21 @@ const AuthProvider = ({children}) => {
 
         // else, alert taken email address
         // alert('Email has been registered already');
-    }
+    };
 
-    const logoutAction = async () => {
-        // TODO: send logout request to server
-        
+    const logoutAction = () => {
         setUser("");
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        localStorage.removeItem("auth");
         navigate("/login");
-    }
+    };
 
-    return <AuthContext.Provider value={{ user, loginAction, registerAction, logoutAction }}>{children}</AuthContext.Provider>;
+    return (
+        <AuthContext.Provider value={{ user, loginAction, registerAction, logoutAction }}>
+            {children}
+        </AuthContext.Provider>
+    );
 };
 
 export default AuthProvider;
