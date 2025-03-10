@@ -54,7 +54,7 @@ const AuthProvider = ({children}) => {
         }
     };
 
-    const registerAction = async (email, password) => {
+    const registerAction = async (email, password, confirmPassword) => {
         setErrorMessage(""); // Clear previous errors
         
         console.log("Sending request with:", { email, password }); // Debugging log
@@ -63,17 +63,21 @@ const AuthProvider = ({children}) => {
             const response = await fetch("http://localhost:5000/api/auth/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, password })
+                body: JSON.stringify({ email, password, confirmPassword })
             });
+
+            const data = await response.json();
 
             if (!response.ok) {
                 const errorData = await response.json().catch(() => null);
                 throw new Error(errorData?.message || "Email has been registered already");
             }
 
+            alert(data.message); 
             navigate("/login");
+            
         } catch (error) {
-            console.error("Registration error:", error);
+            console.error("❌ Registration error:", error);
             setErrorMessage(error.message); // Display error message to UI
             alert(error.message); 
         }
