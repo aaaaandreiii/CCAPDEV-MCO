@@ -1,0 +1,80 @@
+[{
+  "_id": {
+    "$oid": "67ca7c07cefcf6127e66cc3b"
+  },
+  "labID": "AAAAAAAAAAAAIDK",
+  "name": "GK301",
+  "capacity": 30,
+  "location": "Gokongwei Hall, 3rd Floor",
+  "description": "Computer lab for software development.",
+  "createdAt": {
+    "$date": "2023-10-27T10:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-27T10:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67ce179a4b72764272da1cd1"
+  },
+  "labID": "APDEVLABID",
+  "name": "AG1904",
+  "capacity": 30,
+  "location": "Andrew, 19th Floor",
+  "description": "Computer lab for software development.",
+  "createdAt": {
+    "$date": "2024-10-27T10:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-27T10:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67ce656ab76b0fe91f1396bd"
+  },
+  "labID": "gokongwei-lab-302",
+  "name": "GK302",
+  "capacity": 30,
+  "location": "Gokongwei Hall, 3rd Floor",
+  "description": "Computer lab for software development.",
+  "createdAt": {
+    "$date": "2023-10-27T10:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-27T10:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67ce658ab76b0fe91f1396be"
+  },
+  "labID": "gokongwei-lab-303",
+  "name": "GK303",
+  "capacity": 30,
+  "location": "Gokongwei Hall, 3rd Floor",
+  "description": "Computer lab for software development.",
+  "createdAt": {
+    "$date": "2023-10-27T10:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-27T10:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67ce65a7b76b0fe91f1396bf"
+  },
+  "labID": "gokongwei-lab-304",
+  "name": "GK304",
+  "capacity": 30,
+  "location": "Gokongwei Hall, 3rd Floor",
+  "description": "Computer lab for software development.",
+  "createdAt": {
+    "$date": "2023-10-27T10:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-27T10:00:00.000Z"
+  }
+}]

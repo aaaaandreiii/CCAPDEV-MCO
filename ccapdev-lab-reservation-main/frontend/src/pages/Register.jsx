@@ -18,6 +18,8 @@ export default function LoginPage() {
         auth.registerAction(username, password);
     }
 
+    document.title = 'BookLabs Registration';
+
     return (
         <div className="relative h-full w-full overflow-hidden">
             <div className="h-screen flex flex-col items-center justify-center">
@@ -74,6 +76,9 @@ export default function LoginPage() {
                                 REGISTER
                             </button>
                             <Link to={"/login"}>Already a user? Login now</Link>
+
+                            Need confirm password field for register page smh
+
                         </div>
                     </form>
                 </div>

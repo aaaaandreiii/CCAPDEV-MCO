@@ -1,0 +1,9 @@
+HOW TO USE JSON FILES
+1. Open MongoDB Compass
+2. Create new Connection. Name anything. I named mine "CCAPDEV-Lab-Reservation"
+3. Create new Database. Name anything. I named mine "User"
+4. Create new Collection. Name "Labs"
+5. Create new Collection. Name "ReservationsByLabTechnician"
+6. Create new Collection. Name "ReservationsByLabUser"
+7. Create new Collection. Name "UserInformation"
+8. Within each collection, Add Data --> Import JSON or CSV file --> Open respective files according to name

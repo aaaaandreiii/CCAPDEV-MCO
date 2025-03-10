@@ -8,6 +8,8 @@ import pfp1 from '../../assets/pfp1.jpg';
 import pfp2 from '../../assets/pfp2.jpg';
 import pfp3 from '../../assets/pfp3.jpg';
 
+// document.title = 'BookLabs Profile';
+
 export default function Profile() {
     const navigate = useNavigate();
     const auth = useAuth();

@@ -1,0 +1,800 @@
+[{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc06"
+  },
+  "userID": "79a9cea2-d706-4364-918c-e2a4421f66c4",
+  "email": "kayla.dominguez@dlsu.edu.ph",
+  "password": "$2b$12$wMqEhuRuC8jjPI/cP59HV.y8P0zQoNipZlDf44pNpjka5reKUZrFK",
+  "role": "technician",
+  "firstName": "Kayla",
+  "lastName": "Dominguez",
+  "profilePicture": "79a9cea2-d706-4364-918c-e2a4421f66c4.jpg",
+  "description": "This story order want so.",
+  "createdAt": "2024-12-05T04:37:28.715389Z",
+  "updatedAt": "2024-12-05T04:50:28.715389Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc07"
+  },
+  "userID": "eeee312f-8eb1-4a57-9296-20403d48780c",
+  "email": "karen.adams@dlsu.edu.ph",
+  "password": "$2b$12$K1i7JsT0yoHLZp4TJHrW0uBEcN6O2oXNJWr9PZ.EBkSDlulYFDEre",
+  "role": "technician",
+  "firstName": "Karen",
+  "lastName": "Adams",
+  "profilePicture": "eeee312f-8eb1-4a57-9296-20403d48780c.jpg",
+  "description": "Three toward medical continue some six each.",
+  "createdAt": "2025-01-03T04:37:28.945456Z",
+  "updatedAt": "2025-01-03T05:31:28.945456Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc08"
+  },
+  "userID": "bf0886e2-4734-421b-a9e7-35543c5f3345",
+  "email": "gregory_daniels@dlsu.edu.ph",
+  "password": "$2b$12$hHUKl0dAAuD8CPMVQPF9GOa5JgMeCpPdQwvjLD/kxzP0vRQpHe5g6",
+  "role": "student",
+  "firstName": "Gregory",
+  "lastName": "Daniels",
+  "profilePicture": "bf0886e2-4734-421b-a9e7-35543c5f3345.jpg",
+  "description": "Accept air product between number.",
+  "createdAt": "2024-10-07T04:37:29.169706Z",
+  "updatedAt": "2024-10-07T05:18:29.169706Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc09"
+  },
+  "userID": "8c3e0347-9a86-41e2-a920-e50e3e2c8199",
+  "email": "nicole_martin@dlsu.edu.ph",
+  "password": "$2b$12$RdK63NMryXJ/qf6dQ3Nh9efkuCILPfnOJX8VWwtQsYAeT0aUn14/W",
+  "role": "student",
+  "firstName": "Nicole",
+  "lastName": "Martin",
+  "profilePicture": "8c3e0347-9a86-41e2-a920-e50e3e2c8199.jpg",
+  "description": "Public in everything stock executive dog.",
+  "createdAt": "2024-09-04T04:37:29.395573Z",
+  "updatedAt": "2024-09-04T05:56:29.395573Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc0a"
+  },
+  "userID": "db63760f-95be-4194-afe7-933786e20903",
+  "email": "linda_richards@dlsu.edu.ph",
+  "password": "$2b$12$xyJP4IPjIySGXCuE2ZBKse85qE8YI47VULL.Y7njIgiP2cbyJj8/i",
+  "role": "student",
+  "firstName": "Linda",
+  "lastName": "Richards",
+  "profilePicture": "db63760f-95be-4194-afe7-933786e20903.jpg",
+  "description": "Good impact health manage.",
+  "createdAt": "2025-01-25T04:37:29.625071Z",
+  "updatedAt": "2025-01-25T05:53:29.625071Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc0b"
+  },
+  "userID": "23881250-e567-41be-875f-a435dabeab50",
+  "email": "reginald_smith@dlsu.edu.ph",
+  "password": "$2b$12$5Ahfe/ufIt3FnKj5jjM3m./hpJNRnO23J6pUEh2CYIZAzoUoDqtXO",
+  "role": "student",
+  "firstName": "Reginald",
+  "lastName": "Smith",
+  "profilePicture": "23881250-e567-41be-875f-a435dabeab50.jpg",
+  "description": "It music coach stay.",
+  "createdAt": "2024-08-17T04:37:29.857878Z",
+  "updatedAt": "2024-08-17T06:05:29.857878Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc0c"
+  },
+  "userID": "41d48831-6a00-48e3-b1f5-047a6775c7f3",
+  "email": "carol.campbell@dlsu.edu.ph",
+  "password": "$2b$12$78QONYfxUdCLJ/ZxwM8r3uHxBnbnyaasaDSAyomlmtOme1QXNvQ0C",
+  "role": "technician",
+  "firstName": "Carol",
+  "lastName": "Campbell",
+  "profilePicture": "41d48831-6a00-48e3-b1f5-047a6775c7f3.jpg",
+  "description": "Add company will course mother meet traditional.",
+  "createdAt": "2024-10-05T04:37:30.100557Z",
+  "updatedAt": "2024-10-05T05:46:30.100557Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc0d"
+  },
+  "userID": "91646e42-4aab-4521-af8f-a8b9bdf7e0ff",
+  "email": "lori_garrett@dlsu.edu.ph",
+  "password": "$2b$12$X4T4tvvbNruY9wPfJS.3aeRJQSptnEEafamJcgrqq/6D/Gc.K8NFO",
+  "role": "student",
+  "firstName": "Lori",
+  "lastName": "Garrett",
+  "profilePicture": "91646e42-4aab-4521-af8f-a8b9bdf7e0ff.jpg",
+  "description": "Us hundred various kid job such process.",
+  "createdAt": "2024-10-16T04:37:30.326089Z",
+  "updatedAt": "2024-10-16T05:25:30.326089Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc0e"
+  },
+  "userID": "bc0a9796-2d3c-421e-ac85-98eb4b01ace9",
+  "email": "ryan.roberts@dlsu.edu.ph",
+  "password": "$2b$12$ih0fLXNfD0AE1MRLcfBXLuYU8SzMCsL1iXXvUG5N2vOYO8TDuX1Aa",
+  "role": "technician",
+  "firstName": "Ryan",
+  "lastName": "Roberts",
+  "profilePicture": "bc0a9796-2d3c-421e-ac85-98eb4b01ace9.jpg",
+  "description": "Hand way close population development capital.",
+  "createdAt": "2024-04-19T04:37:30.554387Z",
+  "updatedAt": "2024-04-19T05:24:30.554387Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc0f"
+  },
+  "userID": "300c7371-11eb-43e9-87f0-b693cbd91db7",
+  "email": "michael_daniels@dlsu.edu.ph",
+  "password": "$2b$12$iHEZVhvs7Bs3aluZFda43elzIrVILDBQwGQFe2keJl8JwhgTPQZKG",
+  "role": "student",
+  "firstName": "Michael",
+  "lastName": "Daniels",
+  "profilePicture": "300c7371-11eb-43e9-87f0-b693cbd91db7.jpg",
+  "description": "Everything possible amount yourself miss.",
+  "createdAt": "2024-11-12T04:37:30.775822Z",
+  "updatedAt": "2024-11-12T06:18:30.775822Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc10"
+  },
+  "userID": "4d63e28d-8d2a-4130-9cd2-c06e023554cd",
+  "email": "christopher_boyd@dlsu.edu.ph",
+  "password": "$2b$12$vBuu5prLRyiF2kk5Q1isBuWGDLNhKydWRwF667NRAaS6NFvpiyr2m",
+  "role": "student",
+  "firstName": "Christopher",
+  "lastName": "Boyd",
+  "profilePicture": "4d63e28d-8d2a-4130-9cd2-c06e023554cd.jpg",
+  "description": "Sign of degree near audience about study tax.",
+  "createdAt": "2025-01-02T04:37:30.998620Z",
+  "updatedAt": "2025-01-02T04:56:30.998620Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc11"
+  },
+  "userID": "553805df-fef5-498e-8803-2ceb01d56bc0",
+  "email": "courtney_johnson@dlsu.edu.ph",
+  "password": "$2b$12$qkUcXKVqoTiPmgCGXxH3Yu9NcwzhrlW3a/k1CmEAQNtt0cmFMLJ82",
+  "role": "student",
+  "firstName": "Courtney",
+  "lastName": "Johnson",
+  "profilePicture": "553805df-fef5-498e-8803-2ceb01d56bc0.jpg",
+  "description": "Final language base newspaper.",
+  "createdAt": "2024-12-28T04:37:31.226296Z",
+  "updatedAt": "2024-12-28T05:51:31.226296Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc12"
+  },
+  "userID": "3f4dc02a-ac1a-4c98-a0b9-16577a4101f1",
+  "email": "cynthia_nichols@dlsu.edu.ph",
+  "password": "$2b$12$UpABqAMi4ZBFNvlmk9I6v.Dz/2gKdovBrdIDcCGcu3e.XQuASwmwS",
+  "role": "student",
+  "firstName": "Cynthia",
+  "lastName": "Nichols",
+  "profilePicture": "3f4dc02a-ac1a-4c98-a0b9-16577a4101f1.jpg",
+  "description": "Soon before structure current.",
+  "createdAt": "2025-01-18T04:37:31.449306Z",
+  "updatedAt": "2025-01-18T06:12:31.449306Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc13"
+  },
+  "userID": "02fd7187-d106-4f98-93ea-6be0f6decfe8",
+  "email": "tyrone.cooper@dlsu.edu.ph",
+  "password": "$2b$12$EnKH66KtEo7.JTRfsLCIS.nll.7w5o6VYud5Zl4T.Z.fGV0QMWqcO",
+  "role": "technician",
+  "firstName": "Tyrone",
+  "lastName": "Cooper",
+  "profilePicture": "02fd7187-d106-4f98-93ea-6be0f6decfe8.jpg",
+  "description": "Technology cell yard particular.",
+  "createdAt": "2024-06-06T04:37:31.680564Z",
+  "updatedAt": "2024-06-06T04:55:31.680564Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc14"
+  },
+  "userID": "158af1b4-dee3-4477-8624-fc83f2adb1cf",
+  "email": "tina.martin@dlsu.edu.ph",
+  "password": "$2b$12$yRrTo1CSqZKUeyXjX8AKQek.ASvHUGnIRsmMrHcMPO4WQ/Q7yhHV6",
+  "role": "technician",
+  "firstName": "Tina",
+  "lastName": "Martin",
+  "profilePicture": "158af1b4-dee3-4477-8624-fc83f2adb1cf.jpg",
+  "description": "Training watch thank this few total look.",
+  "createdAt": "2024-05-05T04:37:31.906356Z",
+  "updatedAt": "2024-05-05T06:24:31.906356Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc15"
+  },
+  "userID": "1d755613-59d1-475d-be03-377ef48a8519",
+  "email": "ashley_stephenson@dlsu.edu.ph",
+  "password": "$2b$12$yTyfq8NVMwknQueixCmy0uW8GOUbN7/5rokl9QAHfjgvNDeK3KZVq",
+  "role": "student",
+  "firstName": "Ashley",
+  "lastName": "Stephenson",
+  "profilePicture": "1d755613-59d1-475d-be03-377ef48a8519.jpg",
+  "description": "Bill increase particularly real.",
+  "createdAt": "2024-09-28T04:37:32.166428Z",
+  "updatedAt": "2024-09-28T05:30:32.166428Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc16"
+  },
+  "userID": "d11818df-6f47-4100-92ce-02ce5f9f247f",
+  "email": "matthew.burns@dlsu.edu.ph",
+  "password": "$2b$12$f7u4uejFVC1ubY36liDafOzsDEc2nY9xRIlEXAiOJdAeVnJTWxqz6",
+  "role": "technician",
+  "firstName": "Matthew",
+  "lastName": "Burns",
+  "profilePicture": "d11818df-6f47-4100-92ce-02ce5f9f247f.jpg",
+  "description": "Place campaign simply church adult trial.",
+  "createdAt": "2025-01-29T04:37:32.387464Z",
+  "updatedAt": "2025-01-29T05:37:32.387464Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc17"
+  },
+  "userID": "6cca5582-a5b3-4dc8-bfa4-ce6e641a0c55",
+  "email": "robin_flores@dlsu.edu.ph",
+  "password": "$2b$12$bH1a5tFC6XqFse6eZyakCeaRMvA89jZU9u1LYbgvBxo6f0lY5gX0m",
+  "role": "student",
+  "firstName": "Robin",
+  "lastName": "Flores",
+  "profilePicture": "6cca5582-a5b3-4dc8-bfa4-ce6e641a0c55.jpg",
+  "description": "Simply three law ask middle describe student white.",
+  "createdAt": "2025-01-04T04:37:32.611700Z",
+  "updatedAt": "2025-01-04T06:07:32.611700Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc18"
+  },
+  "userID": "ae7a004e-b8c1-44ee-a559-885f028dc6b0",
+  "email": "michael.sanders@dlsu.edu.ph",
+  "password": "$2b$12$DL/lzjxwBtOM2OZAes5gvu7QxO8R7uBMN7Pp3ruVI.g/1hmEbUHii",
+  "role": "technician",
+  "firstName": "Michael",
+  "lastName": "Sanders",
+  "profilePicture": "ae7a004e-b8c1-44ee-a559-885f028dc6b0.jpg",
+  "description": "Attack seat western score smile.",
+  "createdAt": "2024-11-23T04:37:32.839258Z",
+  "updatedAt": "2024-11-23T04:59:32.839258Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc19"
+  },
+  "userID": "4f354d0f-aef1-4477-9451-30c08040ef2b",
+  "email": "melissa_lewis@dlsu.edu.ph",
+  "password": "$2b$12$k3H0GVZtmqnPONlNRcw0hegLS1bWqIpZKJ2.Nhj9ZSSbXJXzTElDa",
+  "role": "student",
+  "firstName": "Melissa",
+  "lastName": "Lewis",
+  "profilePicture": "4f354d0f-aef1-4477-9451-30c08040ef2b.jpg",
+  "description": "Next relate realize stock enough.",
+  "createdAt": "2024-07-01T04:37:33.062052Z",
+  "updatedAt": "2024-07-01T06:18:33.062052Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc1a"
+  },
+  "userID": "ba08dde0-1186-4846-a2e2-7e132f6db98f",
+  "email": "mary.smith@dlsu.edu.ph",
+  "password": "$2b$12$pYU.CqUjbd/1NWVrYbBNMu2ZEOMShFcln//SD9VveIj5KHoSSGzfW",
+  "role": "technician",
+  "firstName": "Mary",
+  "lastName": "Smith",
+  "profilePicture": "ba08dde0-1186-4846-a2e2-7e132f6db98f.jpg",
+  "description": "Play impact join sort.",
+  "createdAt": "2024-12-13T04:37:33.284603Z",
+  "updatedAt": "2024-12-13T06:02:33.284603Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc1b"
+  },
+  "userID": "67c6844e-1c28-4c3b-a1b3-59e710194f2d",
+  "email": "kevin_wilson@dlsu.edu.ph",
+  "password": "$2b$12$C69DshG6xE5hfZc2LSFpOeNibikk3g7nOJZbVQUcoMUajPKz2csMS",
+  "role": "student",
+  "firstName": "Kevin",
+  "lastName": "Wilson",
+  "profilePicture": "67c6844e-1c28-4c3b-a1b3-59e710194f2d.jpg",
+  "description": "Each live dinner wide seven service early.",
+  "createdAt": "2024-08-14T04:37:33.504693Z",
+  "updatedAt": "2024-08-14T06:16:33.504693Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc1c"
+  },
+  "userID": "a577ba49-cc00-41cd-90c0-91396870d6ee",
+  "email": "robert.lopez@dlsu.edu.ph",
+  "password": "$2b$12$/j5f0STubjQkBQ6JSqbjn.qUl2VP8xt7NurbvSvXjEKosXBdFcgYi",
+  "role": "technician",
+  "firstName": "Robert",
+  "lastName": "Lopez",
+  "profilePicture": "a577ba49-cc00-41cd-90c0-91396870d6ee.jpg",
+  "description": "Statement still quite draw.",
+  "createdAt": "2024-08-27T04:37:33.728842Z",
+  "updatedAt": "2024-08-27T05:45:33.728842Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc1d"
+  },
+  "userID": "ee0896bd-25a9-4f4c-a40e-e91d786ce037",
+  "email": "michael.beltran@dlsu.edu.ph",
+  "password": "$2b$12$Qz7Qp/8a/bFBqV5iVZ86OO9OZND.UpBbWVNPYhGwqZuJqVNKXArpm",
+  "role": "technician",
+  "firstName": "Michael",
+  "lastName": "Beltran",
+  "profilePicture": "ee0896bd-25a9-4f4c-a40e-e91d786ce037.jpg",
+  "description": "Off people foot million father item do nice.",
+  "createdAt": "2024-10-09T04:37:33.949460Z",
+  "updatedAt": "2024-10-09T05:48:33.949460Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc1e"
+  },
+  "userID": "cf3e0101-aa59-44d8-aaf9-c17e1bf59719",
+  "email": "jeffrey.cowan@dlsu.edu.ph",
+  "password": "$2b$12$03syveUBEOeqVoIg2nbZfej5Vvqz5KGQ9QLSdfJ6/gc/oTnzuhNdq",
+  "role": "technician",
+  "firstName": "Jeffrey",
+  "lastName": "Cowan",
+  "profilePicture": "cf3e0101-aa59-44d8-aaf9-c17e1bf59719.jpg",
+  "description": "Form better tell.",
+  "createdAt": "2024-11-25T04:37:34.172905Z",
+  "updatedAt": "2024-11-25T04:43:34.172905Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc1f"
+  },
+  "userID": "bda02eee-d0fd-4c57-9536-79d0dc1a0670",
+  "email": "candice_walton@dlsu.edu.ph",
+  "password": "$2b$12$jii6QdmnE5aEbXQ/x2WYcO.4XjXM2hn9vjSRbkvEqdadjEFaoCu/.",
+  "role": "student",
+  "firstName": "Candice",
+  "lastName": "Walton",
+  "profilePicture": "bda02eee-d0fd-4c57-9536-79d0dc1a0670.jpg",
+  "description": "Example however five Congress page moment others two.",
+  "createdAt": "2024-03-30T04:37:34.400447Z",
+  "updatedAt": "2024-03-30T04:40:34.400447Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc20"
+  },
+  "userID": "77216de7-a7df-4e54-a60e-978c15c59dda",
+  "email": "kevin_white@dlsu.edu.ph",
+  "password": "$2b$12$TX8oo11XqHZX05siqQC7leg2fOyp7dkWXMa347gfuyUQeg5fYTCUK",
+  "role": "student",
+  "firstName": "Kevin",
+  "lastName": "White",
+  "profilePicture": "77216de7-a7df-4e54-a60e-978c15c59dda.jpg",
+  "description": "They hundred couple.",
+  "createdAt": "2024-12-27T04:37:34.628585Z",
+  "updatedAt": "2024-12-27T04:48:34.628585Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc21"
+  },
+  "userID": "76cf822c-c354-4fd2-99d8-4eaf4835a39e",
+  "email": "kaitlyn_dawson@dlsu.edu.ph",
+  "password": "$2b$12$nzo02IYzlJl9OeB0mENf3uYdikcgS/UBf8ujrBa68tUIQsxs0IZ7q",
+  "role": "student",
+  "firstName": "Kaitlyn",
+  "lastName": "Dawson",
+  "profilePicture": "76cf822c-c354-4fd2-99d8-4eaf4835a39e.jpg",
+  "description": "While hundred tax almost mind stay film.",
+  "createdAt": "2024-04-25T04:37:34.854272Z",
+  "updatedAt": "2024-04-25T05:32:34.854272Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc22"
+  },
+  "userID": "530b493f-55f2-4db6-8958-ebd0b2fad536",
+  "email": "jennifer.hebert@dlsu.edu.ph",
+  "password": "$2b$12$TH3GAB4aLmIqKrz7GotCCOHNID3Oq2hDipq3/MBNRyD12T6NuI6ru",
+  "role": "technician",
+  "firstName": "Jennifer",
+  "lastName": "Hebert",
+  "profilePicture": "530b493f-55f2-4db6-8958-ebd0b2fad536.jpg",
+  "description": "During discover try series charge.",
+  "createdAt": "2024-03-18T04:37:35.080821Z",
+  "updatedAt": "2024-03-18T06:08:35.080821Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc23"
+  },
+  "userID": "cd6079a7-53fb-461f-bf71-597f1e42ca28",
+  "email": "jacob_adams@dlsu.edu.ph",
+  "password": "$2b$12$jVsgDYJs56VCudYA0ymfA.SrgTd/k.3UxmSplem0V6ulOe3fB1xQy",
+  "role": "student",
+  "firstName": "Jacob",
+  "lastName": "Adams",
+  "profilePicture": "cd6079a7-53fb-461f-bf71-597f1e42ca28.jpg",
+  "description": "Source better cause computer adult dark child.",
+  "createdAt": "2024-07-05T04:37:35.300974Z",
+  "updatedAt": "2024-07-05T06:30:35.300974Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc24"
+  },
+  "userID": "31c2bf89-1726-43d8-8ede-ece1c77f7f88",
+  "email": "denise_swanson@dlsu.edu.ph",
+  "password": "$2b$12$MJ54VWG3e/aIIfYHbxyyD.JY2UYVlF5Qn6w6p1uBeltso9x4f5dI2",
+  "role": "student",
+  "firstName": "Denise",
+  "lastName": "Swanson",
+  "profilePicture": "31c2bf89-1726-43d8-8ede-ece1c77f7f88.jpg",
+  "description": "Yet professor building send civil something stay decade.",
+  "createdAt": "2025-02-26T04:37:35.521264Z",
+  "updatedAt": "2025-02-26T05:39:35.521264Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc25"
+  },
+  "userID": "75e4a19f-f6c7-48b1-98e4-8db9363b1827",
+  "email": "daniel_rodriguez@dlsu.edu.ph",
+  "password": "$2b$12$4aUGgtVnWWnEYpB0J8bI6uoDy193i44GpTzJUysWmzMoJQH0ag4we",
+  "role": "student",
+  "firstName": "Daniel",
+  "lastName": "Rodriguez",
+  "profilePicture": "75e4a19f-f6c7-48b1-98e4-8db9363b1827.jpg",
+  "description": "Like rate glass will.",
+  "createdAt": "2025-03-06T04:37:35.744619Z",
+  "updatedAt": "2025-03-06T04:41:35.744619Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc26"
+  },
+  "userID": "008a2b10-71c2-44a5-b5c1-944beaee6b2f",
+  "email": "gregory.young@dlsu.edu.ph",
+  "password": "$2b$12$es4Y.uqvzcrwArzIl0v0aOT7M8ga9N6fRouP69vxNDtOq0vf.AJs2",
+  "role": "technician",
+  "firstName": "Gregory",
+  "lastName": "Young",
+  "profilePicture": "008a2b10-71c2-44a5-b5c1-944beaee6b2f.jpg",
+  "description": "Nearly knowledge series simply.",
+  "createdAt": "2025-02-10T04:37:35.965579Z",
+  "updatedAt": "2025-02-10T05:55:35.965579Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc27"
+  },
+  "userID": "99a69613-35ec-433a-bd69-49ef164a3677",
+  "email": "adriana_meyers@dlsu.edu.ph",
+  "password": "$2b$12$f5bSiQqqQDM4BC7fdHymauXkppH13gGc1v2ryorDFDk34gaCGf2nq",
+  "role": "student",
+  "firstName": "Adriana",
+  "lastName": "Meyers",
+  "profilePicture": "99a69613-35ec-433a-bd69-49ef164a3677.jpg",
+  "description": "Way effort throughout civil.",
+  "createdAt": "2025-01-07T04:37:36.189606Z",
+  "updatedAt": "2025-01-07T05:21:36.189606Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc28"
+  },
+  "userID": "4a62c323-21c6-4c12-ac67-9c3535579404",
+  "email": "maria.oconnor@dlsu.edu.ph",
+  "password": "$2b$12$J1MME.XwAzG8Yar4UW9nE.iKvx.WDNZg2uE2ODnc5GDnOpuWmnK/S",
+  "role": "technician",
+  "firstName": "Maria",
+  "lastName": "Oconnor",
+  "profilePicture": "4a62c323-21c6-4c12-ac67-9c3535579404.jpg",
+  "description": "Military out a claim.",
+  "createdAt": "2025-02-25T04:37:36.415179Z",
+  "updatedAt": "2025-02-25T06:36:36.415179Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc29"
+  },
+  "userID": "be26d5c2-7ded-4340-8a0e-404cfe7a194d",
+  "email": "nicole_martin@dlsu.edu.ph",
+  "password": "$2b$12$dzIcTT7fdoZ.0ejaAlhwJuUKRtSwLpOnQJCbX9Ns6MxrdV683gvxm",
+  "role": "student",
+  "firstName": "Nicole",
+  "lastName": "Martin",
+  "profilePicture": "be26d5c2-7ded-4340-8a0e-404cfe7a194d.jpg",
+  "description": "Clear value answer arm.",
+  "createdAt": "2024-10-19T04:37:36.638802Z",
+  "updatedAt": "2024-10-19T05:10:36.638802Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc2a"
+  },
+  "userID": "a4740964-7268-4847-92a9-577931d81516",
+  "email": "colin_mendez@dlsu.edu.ph",
+  "password": "$2b$12$OKNApWj9wYwQiIGH/GCbM.PvnTk61QBPRls36q5u6Pw4P7FSXdWT2",
+  "role": "student",
+  "firstName": "Colin",
+  "lastName": "Mendez",
+  "profilePicture": "a4740964-7268-4847-92a9-577931d81516.jpg",
+  "description": "Evidence may customer quality consider if else.",
+  "createdAt": "2024-06-17T04:37:36.858036Z",
+  "updatedAt": "2024-06-17T05:54:36.858036Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc2b"
+  },
+  "userID": "e120ade0-cbfb-4a46-9f2e-7ff2d9fbd335",
+  "email": "vicki.waters@dlsu.edu.ph",
+  "password": "$2b$12$/2hZxxpWkgy2i5gdQZC5gOwWm8sB1UNwbtxL7EnfojaZlgSS7mr76",
+  "role": "technician",
+  "firstName": "Vicki",
+  "lastName": "Waters",
+  "profilePicture": "e120ade0-cbfb-4a46-9f2e-7ff2d9fbd335.jpg",
+  "description": "Until writer yourself challenge her become.",
+  "createdAt": "2024-12-19T04:37:37.079170Z",
+  "updatedAt": "2024-12-19T06:25:37.079170Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc2c"
+  },
+  "userID": "5cf5e676-1011-4431-942e-10dd05e86dc7",
+  "email": "benjamin.hunter@dlsu.edu.ph",
+  "password": "$2b$12$No3zokvFvcz7uW51JiF0quxoJGYnt8Aj1mVSUsXgTcSk0lEIsE/JW",
+  "role": "technician",
+  "firstName": "Benjamin",
+  "lastName": "Hunter",
+  "profilePicture": "5cf5e676-1011-4431-942e-10dd05e86dc7.jpg",
+  "description": "My now half management.",
+  "createdAt": "2024-03-16T04:37:37.300763Z",
+  "updatedAt": "2024-03-16T05:15:37.300763Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc2d"
+  },
+  "userID": "1bb3a596-10c7-484a-aa16-0730c165a35e",
+  "email": "tiffany_ruiz@dlsu.edu.ph",
+  "password": "$2b$12$2UtK3803.bzG4Tqz8VhpbexYOMqU8.xRfn6sct5DPeJALXOPAMejy",
+  "role": "student",
+  "firstName": "Tiffany",
+  "lastName": "Ruiz",
+  "profilePicture": "1bb3a596-10c7-484a-aa16-0730c165a35e.jpg",
+  "description": "Speak long each approach ahead three.",
+  "createdAt": "2024-05-07T04:37:37.524284Z",
+  "updatedAt": "2024-05-07T04:49:37.524284Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc2e"
+  },
+  "userID": "20a99f7d-2ec4-4b45-b311-f3ecd87caee3",
+  "email": "dalton_hudson@dlsu.edu.ph",
+  "password": "$2b$12$AeiJcTIRsUyPMRhd3LkeQ.CtzWfIGr2YyeJqxIFthLe1yf.VLvNKG",
+  "role": "student",
+  "firstName": "Dalton",
+  "lastName": "Hudson",
+  "profilePicture": "20a99f7d-2ec4-4b45-b311-f3ecd87caee3.jpg",
+  "description": "Investment Congress writer a official.",
+  "createdAt": "2025-02-08T04:37:37.745937Z",
+  "updatedAt": "2025-02-08T06:27:37.745937Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc2f"
+  },
+  "userID": "f6534638-a2e5-4dfe-a62b-5c8ed5f51b30",
+  "email": "james.beasley@dlsu.edu.ph",
+  "password": "$2b$12$Yo0BcRd8tmmvOCgnqtPcD.LD9DKasqLffGpf2VV0RyxHIEIi6QSLu",
+  "role": "technician",
+  "firstName": "James",
+  "lastName": "Beasley",
+  "profilePicture": "f6534638-a2e5-4dfe-a62b-5c8ed5f51b30.jpg",
+  "description": "Light to voice executive.",
+  "createdAt": "2024-04-29T04:37:37.969053Z",
+  "updatedAt": "2024-04-29T06:17:37.969053Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc30"
+  },
+  "userID": "d4313539-4a36-49c4-a85e-2fc5ddd52f09",
+  "email": "edwin.silva@dlsu.edu.ph",
+  "password": "$2b$12$NrIV/DgpI1N9IfLk8D62peau073aO3smafbNt6TicR4srAeJV/niO",
+  "role": "technician",
+  "firstName": "Edwin",
+  "lastName": "Silva",
+  "profilePicture": "d4313539-4a36-49c4-a85e-2fc5ddd52f09.jpg",
+  "description": "Quite in method operation cost.",
+  "createdAt": "2025-02-08T04:37:38.193813Z",
+  "updatedAt": "2025-02-08T05:00:38.193813Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc31"
+  },
+  "userID": "bcc509d2-9d0e-404c-9812-bd27a0778883",
+  "email": "katelyn.foster@dlsu.edu.ph",
+  "password": "$2b$12$RhU4dQjR46/rsmhEQNFB1.Cipp9whHgyXe2ixiHzM52QxCUzo6Ay2",
+  "role": "technician",
+  "firstName": "Katelyn",
+  "lastName": "Foster",
+  "profilePicture": "bcc509d2-9d0e-404c-9812-bd27a0778883.jpg",
+  "description": "Yeah culture discuss size than quickly often.",
+  "createdAt": "2024-03-12T04:37:38.416108Z",
+  "updatedAt": "2024-03-12T05:09:38.416108Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc32"
+  },
+  "userID": "9a746458-d93c-4de6-87c1-51cd64d2e223",
+  "email": "timothy.hernandez@dlsu.edu.ph",
+  "password": "$2b$12$lHyfk//gbLGKoWVpr.zrTeP71MuUdXkPQ8M5zdc6cmN.XQyhlc76W",
+  "role": "technician",
+  "firstName": "Timothy",
+  "lastName": "Hernandez",
+  "profilePicture": "9a746458-d93c-4de6-87c1-51cd64d2e223.jpg",
+  "description": "Interview shoulder decision according.",
+  "createdAt": "2025-01-16T04:37:38.640839Z",
+  "updatedAt": "2025-01-16T05:07:38.640839Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc33"
+  },
+  "userID": "99f7f9e0-e79b-477e-ab4c-1e64fa27b7ab",
+  "email": "brenda_anderson@dlsu.edu.ph",
+  "password": "$2b$12$PdP51WXanSReIuhb96iyMuzX50grF5LEm.PWgaE8awapA70pJmAYK",
+  "role": "student",
+  "firstName": "Brenda",
+  "lastName": "Anderson",
+  "profilePicture": "99f7f9e0-e79b-477e-ab4c-1e64fa27b7ab.jpg",
+  "description": "Actually quality life apply small color.",
+  "createdAt": "2025-03-02T04:37:38.861864Z",
+  "updatedAt": "2025-03-02T06:37:38.861864Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc34"
+  },
+  "userID": "6d041d6b-9ea2-45a5-807e-678bb3014831",
+  "email": "tracy.salinas@dlsu.edu.ph",
+  "password": "$2b$12$6gGmPxO7qsEKxL6wtznQlu6n5gvnxbod7DXDcdyy1ItuEaO7edKzm",
+  "role": "technician",
+  "firstName": "Tracy",
+  "lastName": "Salinas",
+  "profilePicture": "6d041d6b-9ea2-45a5-807e-678bb3014831.jpg",
+  "description": "In discover north choice knowledge audience north.",
+  "createdAt": "2024-03-26T04:37:39.084349Z",
+  "updatedAt": "2024-03-26T05:41:39.084349Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc35"
+  },
+  "userID": "8af84e1a-6a18-4db3-b6f0-0b05612d255c",
+  "email": "peter_porter@dlsu.edu.ph",
+  "password": "$2b$12$ACxwg1kKiXWJNqMc3fLAHeWIB0E9qQl3Y7.8DuErmSgh4RBL9UVFe",
+  "role": "student",
+  "firstName": "Peter",
+  "lastName": "Porter",
+  "profilePicture": "8af84e1a-6a18-4db3-b6f0-0b05612d255c.jpg",
+  "description": "Also cost guy memory trouble.",
+  "createdAt": "2024-06-29T04:37:39.305896Z",
+  "updatedAt": "2024-06-29T06:15:39.305896Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc36"
+  },
+  "userID": "a552532c-8f66-4c29-8052-f44051170036",
+  "email": "brian.rodriguez@dlsu.edu.ph",
+  "password": "$2b$12$4r/zzmk4Twh/QfyE4kY10ejfd5.vnLJDa/3k6PjLrBYbR5YAegzL2",
+  "role": "technician",
+  "firstName": "Brian",
+  "lastName": "Rodriguez",
+  "profilePicture": "a552532c-8f66-4c29-8052-f44051170036.jpg",
+  "description": "Stop above painting.",
+  "createdAt": "2025-02-09T04:37:39.530165Z",
+  "updatedAt": "2025-02-09T06:34:39.530165Z",
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ca794dcefcf6127e66cc37"
+  },
+  "userID": "5c33fb62-58da-4fda-8ef0-96a4ae9b64cc",
+  "email": "christopher_smith@dlsu.edu.ph",
+  "password": "$2b$12$x0wtn5cUhpBYdMjROMYORO6Jr2AGLzOTvc28Pe8Qf.mVxguIzDsIi",
+  "role": "student",
+  "firstName": "Christopher",
+  "lastName": "Smith",
+  "profilePicture": "5c33fb62-58da-4fda-8ef0-96a4ae9b64cc.jpg",
+  "description": "Argue good this.",
+  "createdAt": "2024-07-20T04:37:39.749926Z",
+  "updatedAt": "2024-07-20T06:15:39.749926Z",
+  "isDeleted": false
+}]

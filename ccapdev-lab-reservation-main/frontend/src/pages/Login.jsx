@@ -19,6 +19,8 @@ export default function LoginPage() {
         auth.loginAction(username, password, remember);
     }
 
+    document.title = 'BookLabs Login';
+
     return (
         <div className="relative h-full w-full overflow-hidden">
             <div className="h-screen flex flex-col items-center justify-center">
@@ -84,9 +86,17 @@ export default function LoginPage() {
                             
                             
                             <Link to={"/register"}>Not yet a user? Register now</Link>
+
                         </div>
                     </form>
                 </div>
+            
+Some of the most common mistakes during MCO1:
+<ul>
+<li>Some registration pages forgot to add a confirm password.</li>
+<li>The edit pages and delete buttons are needed.</li>
+<li>For lab reservation, try to visualize how it would be used by the technician, not only a student/user.</li>
+</ul>
             </div>
         </div  >
     );

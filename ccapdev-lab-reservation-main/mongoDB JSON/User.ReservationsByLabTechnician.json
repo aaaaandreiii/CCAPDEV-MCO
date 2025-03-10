@@ -1,0 +1,21 @@
+[{
+  "_id": {
+    "$oid": "67ca7d9dcefcf6127e66cc3f"
+  },
+  "reservationID": "unique_reservation_id",
+  "labID": "lab_id",
+  "startTime": {
+    "$date": "2023-10-28T10:00:00.000Z"
+  },
+  "endTime": {
+    "$date": "2023-10-28T11:30:00.000Z"
+  },
+  "reason": "Maintenance",
+  "technicianID": "technician_id",
+  "createdAt": {
+    "$date": "2023-10-27T10:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-27T10:00:00.000Z"
+  }
+}]
