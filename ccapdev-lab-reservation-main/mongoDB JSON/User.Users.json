@@ -1,0 +1,38 @@
+[{
+  "_id": {
+    "$oid": "67ce908eb76b0fe91f13970c"
+  },
+  "email": "andrei_balingit@dlsu.edu.ph",
+  "password": "aaaaaaaaaaaaaaaaaaaaaaaa",
+  "role": "student",
+  "firstName": "Andrei",
+  "lastName": "Balingit",
+  "profilePicture": "123abc45-6789-defg-hijk-lmnopqrstuvw.jpg",
+  "description": "pls work pls work pls work pls work pls work",
+  "createdAt": {
+    "$date": "2024-12-05T04:37:28.715Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-05T04:50:28.715Z"
+  },
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "67ce90fdb76b0fe91f13970d"
+  },
+  "email": "admin@dlsu.edu.ph",
+  "password": "admin",
+  "role": "technician",
+  "firstName": "Admin",
+  "lastName": "Admin",
+  "profilePicture": "admin.jpg",
+  "description": "admin pls work",
+  "createdAt": {
+    "$date": "2024-12-05T04:37:28.715Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-05T04:50:28.715Z"
+  },
+  "isDeleted": false
+}]

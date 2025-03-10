@@ -405,63 +405,6 @@ export default function Reserve() {
         }
     }, [selectedRoom, selectedDay]);
 
-    // const fetchAvailableSlots = async () => {
-    //     // if (!selectedRoom || !selectedDay) return;
-    //     // try {
-    //     //     const response = await axios.get(`http://localhost:5000/api/available-slots/${selectedRoom.value}/${selectedDay.value}`);
-    //     //     setTimes(response.data.map(slot => ({ label: slot.time, value: slot.time })));
-    //     // } catch (error) {
-    //     //     console.error('Error fetching available slots:', error);
-    //     // }
-
-    //     const startDate = new Date(date);
-    //     startDate.setHours(0, 0, 0, 0); // Set to start of the day
-    //     const endDate = new Date(date);
-    //     endDate.setHours(23, 59, 59, 999); // Set to end of the day
-
-    //     const reservations = await mongoose.model('Reservation').find({
-    //         labID: labID,
-    //         startTime: { $gte: startDate, $lte: endDate },
-    //     });
-
-    //     const intervalMinutes = 30; // 30-minute intervals
-    //     const startTime = new Date(startDate);
-    //     startTime.setHours(8, 0, 0, 0); // Example: start at 8:00 AM
-    //     const endTime = new Date(startDate);
-    //     endTime.setHours(18, 0, 0, 0); // Example: end at 6:00 PM
-
-    //     const availableSlots = [];
-    //     let currentTime = new Date(startTime);
-
-    //     while (currentTime < endTime) {
-    //         const nextTime = new Date(currentTime.getTime() + intervalMinutes * 60000);
-    //         let isAvailable = true;
-
-    //         for (const reservation of reservations) {
-    //         if (
-    //             (currentTime >= reservation.startTime && currentTime < reservation.endTime) ||
-    //             (nextTime > reservation.startTime && nextTime <= reservation.endTime) ||
-    //             (reservation.startTime >= currentTime && reservation.startTime < nextTime)
-    //         ) {
-    //             isAvailable = false;
-    //             break;
-    //         }
-    //         }
-
-    //     if (isAvailable) {
-    //         availableSlots.push({
-    //             startTime: new Date(currentTime),
-    //             endTime: new Date(nextTime),
-    //         });
-    //     }
-
-    //     currentTime = nextTime;
-    //     }
-
-    //     return availableSlots;
-
-    // };
-
     const fetchAvailableSlots = async () => {
         if (!selectedRoom || !selectedDay) return;
         try {
@@ -475,34 +418,112 @@ export default function Reserve() {
         }
     };
     
+    // const fetchSeats = async () => {
+    //     // if (!selectedRoom || !selectedTime) return;
+    //     // try {
+    //     //     const response = await axios.get(`http://localhost:5000/api/seats/${selectedRoom.value}/${selectedTime.value}`);
+    //     //     setSeats(response.data.map(seat => ({ label: `Seat ${seat}`, value: seat })));
+    //     // } catch (error) {
+    //     //     console.error('Error fetching seats:', error);
+    //     // }
+
+
+
+
+    //     if (!selectedRoom || !selectedTime) return;
+    //     try {
+    //         const response = await axios.get(`http://localhost:5000/api/seats/${selectedRoom.value}/${selectedTime.value}`);
+            
+    //         console.log("Fetched seats:", response.data);
+
+    //         if (response.data.length === 0) {
+    //             setSeatVisuals([<p key="no-seats" className="text-red-500">No available seats</p>]);
+    //         } else {
+    //             setSeats(response.data);
+    //             setSeatVisuals(response.data.map(seat => (
+    //                 <button 
+    //                     key={seat} 
+    //                     className="bg-blue-500 text-white p-2 m-1 rounded"
+    //                     onClick={() => handleSeatSelection(seat)}
+    //                 >
+    //                     Seat {seat}
+    //                 </button>
+    //             )));
+    //         }
+    //     } catch (error) {
+    //         console.error('Error fetching seats:', error);
+    //     }
+
+
+
+
+
+
+
+            // if (!selectedRoom || !selectedTime) return;
+            // try {
+            //     const response = await axios.get(`http://localhost:5000/api/seats/${selectedRoom.value}/${selectedTime.value}`);
+                
+            //     console.log("Fetched seats:", response.data); // 🔥 Debugging log
+        
+            //     if (response.data.length === 0) {
+            //         setSeatVisuals([<p key="no-seats" className="text-red-500">No available seats</p>]);
+            //     } else {
+            //         setSeats(response.data);
+            //         setSeatVisuals(response.data.map(seat => (
+            //             <button 
+            //                 key={seat} 
+            //                 className="bg-blue-500 text-white p-2 m-1 rounded"
+            //                 onClick={() => handleSeatSelection(seat)}
+            //             >
+            //                 Seat {seat}
+            //             </button>
+            //         )));
+            //     }
+            // } catch (error) {
+            //     console.error('Error fetching seats:', error);
+            // }        
+    // };
+
+
     const fetchSeats = async () => {
         if (!selectedRoom || !selectedTime) return;
         try {
             const response = await axios.get(`http://localhost:5000/api/seats/${selectedRoom.value}/${selectedTime.value}`);
-            setSeats(response.data.map(seat => ({ label: `Seat ${seat}`, value: seat })));
+            
+            console.log("Fetched seats:", response.data); // 🔥 Debugging log
+    
+            if (response.data.length === 0) {
+                setSeatVisuals([<p key="no-seats" className="text-red-500">No available seats</p>]);
+            } else {
+                setSeats(response.data);
+                setSeatVisuals(response.data.map(seat => (
+                    <button 
+                        key={seat} 
+                        className="bg-blue-500 text-white p-2 m-1 rounded"
+                        onClick={() => handleSeatSelection(seat)}
+                    >
+                        Seat {seat}
+                    </button>
+                )));
+            }
         } catch (error) {
             console.error('Error fetching seats:', error);
         }
     };
     
 
+    const handleSeatSelection = (seat) => {
+        setSeats(prevSeats => prevSeats.map(s => 
+            s === seat ? { ...s, selected: !s.selected } : s
+        ));
+    };
+    
     useEffect(() => {
         if (selectedRoom && selectedTime) {
             fetchSeats();
         }
-    }, [selectedRoom, selectedTime]);
-
-    // const fetchSeats = async () => {
-    //     if (!selectedRoom || !selectedTime) return;
-    //     try {
-    //         const response = await axios.get(`http://localhost:5000/api/seats/${selectedRoom.value}/${selectedTime.value}`);
-    //         setSeats(response.data); // Store seat data
-    //     } catch (error) {
-    //         console.error('Error fetching seats:', error);
-    //     }
-    // };
-    
-    
+    }, [selectedRoom, selectedTime]);    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -512,18 +533,30 @@ export default function Reserve() {
                 labID: selectedRoom.value,
                 startTime: selectedTime.value,
                 endTime: new Date(new Date(selectedTime.value).getTime() + 30 * 60000),
-                seatNumber: seats.find(seat => seat.selected)?.seat,
+                seatNumber: seats.find(seat => seat.selected)?.value,
                 isAnonymous: e.target.anonymous.checked,
             };
-            
+    
             const apiEndpoint = auth.user.role === 'technician' ? '/api/reserve/technician' : '/api/reserve/user';
-            await axios.post(`http://localhost:5000${apiEndpoint}`, reservationData);
+            // await axios.post(`http://localhost:5000${apiEndpoint}`, reservationData);
+            await axios.post("http://localhost:5000/api/reserve/user", reservationData);
             enqueueSnackbar('Successfully reserved!', { variant: 'success' });
         } catch (error) {
             setError('Error making reservation.');
             console.error('Reservation error:', error);
+            if (error.response) {
+                console.error('Reservation error:', error.response.data);
+                if (error.response.data) {
+                      // show error to user, for example:
+                      // showValidationError(error.response.data)
+                }
+            } else if (error.request) {
+                console.error('No response received:', error.request);
+            } else {
+                console.error('Error setting up the request:', error.message);
+            }
         }
-    };
+    };    
 
     return (
         <div className="flex flex-col">
@@ -539,7 +572,10 @@ export default function Reserve() {
                 <Select className='w-[450px] mb-3' isMulti options={times} value={selectedTime} onChange={setSelectedTime} />
 
                 <label className="formlabel required">Seats</label>
-                <div className='flex flex-col gap-2 p-2 w-fit'>{seatVisuals}</div>
+                <div className='flex flex-wrap gap-2 p-2 w-fit'>
+                    {seatVisuals.length > 0 ? seatVisuals : <p className="text-red-500">No available seats</p>}
+                </div>
+
 
                 <label className="formlabel mr-3" htmlFor="anonymous">Reserve anonymously?</label>
                 <input type="checkbox" id="anonymous" name="anonymous" />

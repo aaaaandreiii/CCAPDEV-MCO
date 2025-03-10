@@ -5,7 +5,8 @@ const labSchema = new mongoose.Schema({
   capacity: Number,
   location: String,
   description: String,
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now }
 });
 
 module.exports = mongoose.model('Lab', labSchema);

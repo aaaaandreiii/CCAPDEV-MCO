@@ -7,8 +7,10 @@ const userSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,
   profilePicture: String,
+  description: String,
   isDeleted: { type: Boolean, default: false },
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now }
 });
 
 module.exports = mongoose.model('User', userSchema);

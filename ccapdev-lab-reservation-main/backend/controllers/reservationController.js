@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 const ReservationByUser = require('../models/ReservationByUser');
 const ReservationByLabTechnician = require('../models/ReservationByLabTechnician');
 
+//i apologize, the code is messy and unorganized
+//the order of functions especially teehee~
+//imma fix it after MCO2, just really busy with other majors teehee~
+//-andrei
+
 //fetch available slots for a lab on a specific day
 exports.getAvailableSlots = async (req, res) => {
     try {
@@ -57,19 +62,24 @@ exports.getAvailableSlots = async (req, res) => {
 exports.getAvailableSeats = async (req, res) => {
     try {
         const { labID, startTime } = req.params;
-        const endTime = new Date(new Date(startTime).getTime() + 30 * 60000); //30 min slot
+        const endTime = new Date(new Date(startTime).getTime() + 30 * 60000);
+
+        if (!mongoose.Types.ObjectId.isValid(labID)) {
+            return res.status(400).json({ error: "Invalid labID format" });
+        }
+        const labObjectId = new mongoose.Types.ObjectId(labID);
 
         const occupiedSeats = await ReservationByUser.find({
-            labID,
+            labID: labObjectId,
             $or: [
                 { startTime: { $lt: endTime }, endTime: { $gt: startTime } }
             ]
         }, { seatNumber: 1 });
 
         const occupiedSeatNumbers = occupiedSeats.map(res => res.seatNumber);
-        const totalSeats = 20; // some lab capacity AAAAAAAAA IDK
-        const availableSeats = [];
+        const totalSeats = 30;
 
+        const availableSeats = [];
         for (let i = 1; i <= totalSeats; i++) {
             if (!occupiedSeatNumbers.includes(i)) {
                 availableSeats.push(i);
@@ -83,22 +93,19 @@ exports.getAvailableSeats = async (req, res) => {
 };
 
 
+
 //create a reservation for students
 exports.reserveSlotByUser = async (req, res) => {
   try {
     const { userID, labID, startTime, endTime, seatNumber, isAnonymous } = req.body;
     
-    const newReservation = new ReservationByUser({
-      reservationID: new mongoose.Types.ObjectId(),
-      userID,
-      labID,
-      startTime,
-      endTime,
-      seatNumber,
-      isAnonymous
-    });
-
+    const newReservation = new ReservationByUser({ userID, labID, startTime, endTime, seatNumber, isAnonymous });
     await newReservation.save();
+
+    //real-time update
+    const io = req.app.get('io');
+    io.emit('updateReservations', { labID });
+
     res.status(201).json({ message: 'Student reservation successful' });
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -129,12 +136,26 @@ exports.reserveSlotByTechnician = async (req, res) => {
 //fetch all student reservations
 exports.getUserReservations = async (req, res) => {
   try {
-    const reservations = await ReservationByUser.find().populate('userID', 'email').populate('labID', 'name');
-    res.json(reservations);
+    const reservations = await ReservationByUser.find()
+    .populate({ path: 'userID', model: 'User', select: 'email firstName lastName' })
+    .populate({ path: 'labID', model: 'Lab', select: 'name' });
+    
+    const formattedReservations = reservations.map(res => ({
+        _id: res._id,
+        userEmail: res.isAnonymous ? 'Anonymous' : res.userID?.email || 'Andrei Balingit',
+        labName: res.labID?.name || 'GK301',
+        startTime: res.startTime,
+        endTime: res.endTime,
+        seatNumber: res.seatNumber
+    }));
+
+
+    res.json(formattedReservations);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
+
 
 //fetch all technician reservations
 exports.getTechnicianReservations = async (req, res) => {
@@ -149,11 +170,18 @@ exports.getTechnicianReservations = async (req, res) => {
 //remove a student reservation
 exports.removeUserReservation = async (req, res) => {
   try {
-    const { reservationId } = req.params;
-    await ReservationByUser.findByIdAndDelete(reservationId);
-    res.json({ message: 'Student reservation removed' });
+      const { reservationId } = req.params;
+      const reservation = await ReservationByUser.findByIdAndDelete(reservationId);
+      
+      if (!reservation) return res.status(404).json({ error: 'Reservation not found' });
+
+      //more real-time updates
+      const io = req.app.get('io');
+      io.emit('updateReservations', { labID: reservation.labID });
+
+      res.json({ message: 'Student reservation removed' });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+      res.status(500).json({ error: error.message });
   }
 };
 

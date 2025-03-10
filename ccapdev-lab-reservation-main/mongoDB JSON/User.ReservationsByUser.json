@@ -1,10 +1,40 @@
 [{
   "_id": {
+    "$oid": "67ce6e5cb76b0fe91f1396ce"
+  },
+  "reservationID": "GK301_reservation_by_andrei",
+  "userID": {
+    "$oid": "64f346881765c9777f988888"
+  },
+  "labID": {
+    "$oid": "64f346881765c9777f988889"
+  },
+  "startTime": {
+    "$date": "2025-03-10T15:00:00.000Z"
+  },
+  "endTime": {
+    "$date": "2025-03-10T15:30:00.000Z"
+  },
+  "seatNumber": 15,
+  "isAnonymous": false,
+  "createdAt": {
+    "$date": "2025-03-09T15:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-09T15:00:00.000Z"
+  }
+},
+{
+  "_id": {
     "$oid": "67ca7c27cefcf6127e66cc3d"
   },
   "reservationID": "unique_reservation_id",
-  "userID": "user_id",
-  "labID": "lab_id",
+  "userID": {
+    "$oid": "64f346881765c9777f988888"
+  },
+  "labID": {
+    "$oid": "64f346881765c9777f988889"
+  },
   "startTime": {
     "$date": "2023-10-28T10:00:00.000Z"
   },
@@ -18,5 +48,31 @@
   },
   "updatedAt": {
     "$date": "2023-10-27T10:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67ce4e95b76b0fea1f1396b7"
+  },
+  "reservationID": "unique_reservation_id",
+  "userID": {
+    "$oid": "64f346881765c9777f988888"
+  },
+  "labID": {
+    "$oid": "64f346881765c9777f988889"
+  },
+  "startTime": {
+    "$date": "2025-03-10T15:00:00.000Z"
+  },
+  "endTime": {
+    "$date": "2025-03-10T18:00:00.000Z"
+  },
+  "seatNumber": 15,
+  "isAnonymous": false,
+  "createdAt": {
+    "$date": "2025-03-09T15:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-09T15:00:00.000Z"
   }
 }]
