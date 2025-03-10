@@ -7,7 +7,7 @@ import { useAuth } from '../AuthProvider.jsx';
 
 export default function LoginPage() {
     const navigate = useNavigate();
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setVisible] = useState(false);
     const [remember, setRemember] = useState(false);
@@ -16,7 +16,7 @@ export default function LoginPage() {
     
     const handleSubmit = (e) => {
         e.preventDefault(); 
-        auth.loginAction(username, password, remember);
+        auth.loginAction(email, password, remember);
     }
 
     document.title = 'BookLabs Login';
@@ -39,9 +39,9 @@ export default function LoginPage() {
                                     type="text"
                                     name=""
                                     id=""
-                                    value={username}
+                                    value={email}
                                     required
-                                    onChange={(e)=>setUsername(e.currentTarget.value)}
+                                    onChange={(e)=>setEmail(e.currentTarget.value)}
                                 />
                             </div>
 
