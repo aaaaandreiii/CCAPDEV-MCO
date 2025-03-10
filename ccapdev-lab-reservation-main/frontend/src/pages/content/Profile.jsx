@@ -1,143 +1,194 @@
 import { useAuth } from '../../AuthProvider.jsx';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-
-import { IconEdit, IconTrash, IconCheck } from '@tabler/icons-react'
+import { IconEdit, IconTrash, IconCheck } from '@tabler/icons-react';
 
 import pfp1 from '../../assets/pfp1.jpg';
 import pfp2 from '../../assets/pfp2.jpg';
 import pfp3 from '../../assets/pfp3.jpg';
-
-// document.title = 'BookLabs Profile';
 
 export default function Profile() {
     const navigate = useNavigate();
     const auth = useAuth();
 
     const [canEdit, setCanEdit] = useState(true);
-    const [canDelete, setCanDelete] = useState(false);
+    const [canDelete, setCanDelete] = useState(true);
     const [editMode, setEditMode] = useState(false);
     
     const [reservations, setReservations] = useState([]);
     const [reservationVisuals, setReservationVisuals] = useState([]);
-
-    const [pfpUrl, setPfpUrl] = useState("");
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [pfpUrl, setPfpUrl] = useState(pfp1);
+    const [description, setDescription] = useState("");
     const [selectedImage, setSelectedImage] = useState(null);
     const [reset, setReset] = useState(Date.now());
 
     const { id } = useParams();
 
-    const [user, setUser] = useState({username: "hatdog"});
-
-    const header = [];
+    const [user, setUser] = useState(() => {
+        return JSON.parse(localStorage.getItem("user")) ?? null;
+    });
 
     const columnHeader = [
-        {label: "Room", accessor: "room"},
-        {label: "Seat", accessor: "seat"}, 
-        {label: "Reservation Date", accessor: "reserveDate"},
-        {label: "Timeslot", accessor: "timeslot"},
-        {label: "Timestamp", accessor: "timestamp"},
+        {label: "Name", accessor: "fullName"},
+        {label: "Laboratory", accessor: "labID"},
+        {label: "Seat", accessor: "seatNumber"}, 
+        {label: "Reservation Date", accessor: "formattedReservationDate"},
+        {label: "Timeslot", accessor: "timeSlot"},
+        {label: "Time of Request", accessor: "formattedCreatedAt"},
         {label: "", accessor:"edit"},
-        {label: "", accessor:"cancel"}];
+        {label: "", accessor:"cancel"}
+    ];
 
-    const getReservations = (() => {
-        //TODO: fetch reservation data
 
-        var tempReservations = [];
-        let currDate = new Date(Date.now())
-            let timestamp = currDate.toLocaleDateString(undefined, {year: 'numeric', month: 'long', day: 'numeric'}) + " " + currDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
-        if (id == "student") {
-            tempReservations.push({room: "G-306A", seat: "06", timestamp:  timestamp, reserveDate: "February 6, 2025", timeslot: ["16:30 - 17:00, 17:00 - 17:30"]})
-            tempReservations.push({room: "G-306B", seat: "06", timestamp:  timestamp, reserveDate: "February 7, 2025", timeslot: ["07:00 - 07:30"]})
-        } else if (id == "friend") {
-            tempReservations.push({room: "G-308", seat: "01", timestamp:  timestamp, reserveDate: "February 8, 2025", timeslot: ["12:00 - 12:30, 17:00 - 17:30"]})
-            tempReservations.push({room: "G-306B", seat: "04", timestamp:  timestamp, reserveDate: "February 8, 2025", timeslot: ["13:00 - 13:30"]})
-            tempReservations.push({room: "G-308", seat: "04", timestamp:  timestamp, reserveDate: "February 10, 2025", timeslot: ["08:00 - 08:30, 08:30 - 09:00"]})
-        }
-        setReservations(tempReservations);
-    });
 
-    for (let i = 0; i < columnHeader.length; i++) {
-        header.push(
-            <th key={columnHeader[i].accessor}
-                className={`font-semibold py-1 px-2`}>
-                {columnHeader[i].label}
-            </th>
-        );
-    }
-
-    const getReservationVisuals = (() => {
-        var visuals = [];
-
-        for (let i = 0; i < reservations.length; i++) {
-            var rowData = [];
-
-            for (var column of columnHeader) {
-                if (reservations[i].hasOwnProperty(column.accessor)) {
-                    rowData.push(
-                        <td key={column.accessor + "" + i}
-                            className='py-1 px-2'>
-                            {reservations[i][column.accessor]}
-                        </td>
-                    );
-                }
-            }
-
-            visuals.push(
-                <tr key={"data" + i} 
-                    className={`odd:bg-white even:bg-fieldgray hover:bg-bgpink`}>
-                    {rowData}
-                    {
-                        canEdit ? 
-                        <td>
-                            <IconEdit stroke={2} className='cursor-pointer' onClick={(e) => {navigate("/edit/abc")}}/>
-                        </td>
-                        : <td></td>
-                    }
-                    {
-                        canEdit && id=="student" ? 
-                            <td>
-                                <IconTrash stroke={2} color='#cc5f5f' className='cursor-pointer' onClick={(e) => {if (confirm("Do you want to delete this reservation?")) console.log("deleted reservation")}}/>
+    const getReservationVisuals = () => {
+        const reservationVisuals = reservations.map((reservation, index) => {
+            return (
+                <tr key={index} className="odd:bg-white even:bg-fieldgray hover:bg-bgpink">
+                    {columnHeader.map((column) =>
+                        reservation.hasOwnProperty(column.accessor) ? (
+                            <td key={`${column.accessor}-${index}`} className="py-1 px-2">
+                                {reservation[column.accessor]}
                             </td>
-                        : <td></td>
-                    }
+                        ) : null
+                    )}
+    
+                    <td>
+                        <IconEdit stroke={2} className="cursor-pointer" onClick={() => navigate(`/edit/${reservation._id}`)} />
+                    </td>
+                    <td>{/**TODO: change logic */}
+                        <IconTrash stroke={2} color="#cc5f5f" className="cursor-pointer" onClick={() => navigate("/edit/${reservation._id}")} />
+                    </td>
+                    <td></td>
                 </tr>
-            )
-        }
-
-        setReservationVisuals(visuals);
-    });
+            );
+        });
+    
+        setReservationVisuals(reservationVisuals); 
+    };    
 
     useEffect(() => {
-        // TODO: query backend for user data with id
-
-        // TODO: replace with actual logic
-        var tempUser;
-        if (id == "student") {
-            tempUser = {type:"student", username: "Juan Carlos", description:"i like watching anime :3"}
-            setPfpUrl(pfp1)
-            setCanEdit(true);
-            setCanDelete(true);
-        } else if (id == "friend") {
-            tempUser = {type:"student", username: "Mary Jane Dela Cruz", description:"Let's be friends!"}
-            setPfpUrl(pfp2)
-            setCanEdit(auth.user == "lab");
-        } else if (id == "lab") {
-            tempUser = {type:"lab", username: "LeBron James", description: "LEEEEEBRRROOOOOOOOON JAAAAAAMES"}
-            setPfpUrl(pfp3)
-            setCanEdit(true);
-        }
+        const fetchProfile = async () => {
+            try {
+                const storedUser = JSON.parse(localStorage.getItem("user")); // Ensure consistency
+                if (!storedUser) throw new Error("User not found in localStorage");
         
-        setUser(tempUser);
+                const response = await fetch(`http://localhost:5000/api/profile/${storedUser.id}`);
+                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+        
+                const data = await response.json();
+                setUser(data);
+                setPfpUrl(data.profilePicture || pfp1);
+                setCanEdit(data.role === "technician");
+                setCanDelete(data.role === "student"); 
+            } catch (err) {
+                console.error("Error fetching user data:", err);
+            }
+        };        
+        
+        fetchProfile(); 
     }, [id]);
 
     useEffect(() => {
-        getReservations();
-    }, [user]);
+        const getReservations = async () => {
+            try {
+                const user = JSON.parse(localStorage.getItem("user"));
+
+                if (!user) {
+                    throw new Error("User not logged in");
+                }
+                console.log("user.otherID:", user.otherID);
+
+                const response = await fetch(`http://localhost:5000/api/reservations/${user.otherID}`, {
+                    method: 'GET',
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const data = await response.json();
+
+                const formattedData = data.map((reservation) => ({
+                    ...reservation,
+                    fullName: `${reservation.userDetails.firstName} ${reservation.userDetails.lastName}`,
+                    formattedReservationDate: new Date(reservation.startTime).toLocaleString("en-US", { 
+                        month: "long",
+                        day: "2-digit",
+                        year: "numeric"
+                    }),
+                    timeSlot: `${new Date(reservation.startTime).toLocaleTimeString("en-US", { 
+                        hour12: false, 
+                        hour: "2-digit", 
+                        minute: "2-digit",
+                        timeZone: "Asia/Singapore"
+                    })} - ${new Date(reservation.endTime).toLocaleTimeString("en-US", { 
+                        hour12: false, 
+                        hour: "2-digit", 
+                        minute: "2-digit",
+                        timeZone: "Asia/Singapore"
+                    })}`,
+                    formattedCreatedAt: new Date(reservation.createdAt).toLocaleString("en-US", {
+                        year: "numeric",
+                        month: "2-digit",
+                        day: "2-digit",
+                        hour12: false, 
+                        hour: "2-digit", 
+                        minute: "2-digit",
+                        timeZone: "Asia/Singapore"
+                    })
+                }));
+
+                setReservations(formattedData);
+            } catch (err) {
+                console.error("Error fetching reservations:", err);
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        getReservations(); // Fetch reservations for the logged-in user
+    }, [auth.user]);
 
     useEffect(() => {
         getReservationVisuals();
     }, [reservations]);
+    
+    const handleSave = async () => {
+        try {
+            const storedUser = JSON.parse(localStorage.getItem("user")); // Ensure consistency
+            if (!storedUser) throw new Error("User not found in localStorage");
+    
+            const formData = new FormData();
+            formData.append("description", description);
+            if (selectedImage) {
+                formData.append("profilePicture", selectedImage);
+            } else {
+                formData.append("profilePicture", pfpUrl);
+            }
+    
+            const response = await fetch(`http://localhost:5000/api/profile/${storedUser.id}`, {
+                method: "POST",
+                body: formData,
+            });
+    
+            if (!response.ok) {
+                const errorMessage = await response.text();
+                throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorMessage}`);
+            }
+    
+            const updatedUser = await response.json();
+            setUser(updatedUser);
+            setPfpUrl(updatedUser.profilePicture || pfp1);
+            setEditMode(false);
+        } catch (error) {
+            console.error("Error updating profile:", error);
+            alert(`Failed to update profile: ${error.message}`);
+        }
+    };
+    
 
     return (
         <>
@@ -154,7 +205,7 @@ export default function Profile() {
 
                                 <div className="flex flex-col ml-12 w-full">
                                     <div className='text-[24px] text-fontgray pb-1.5'>
-                                        Name: {user.username}
+                                        Name: {user.firstName + " " + user.lastName}
                                     </div>
                                     <div className='text-fontgray'>
                                         Description: {user.description}
@@ -162,14 +213,11 @@ export default function Profile() {
                                 </div>
 
                                 {
-                                    canEdit && id=="student" ? 
+                                    (user.role === "technician" || user.role === "student") && 
                                         <div className='w-fit flex flex-row-reverse'>
-                                            <IconEdit stroke={2} onClick={(e) => {setEditMode(!editMode)}}/>
+                                            <IconEdit stroke={2} className="cursor-pointer" onClick={() => navigate(`/edit/${reservation._id}`)} />
                                         </div>
-                                    : <></>
                                 }
-
-                                
                             </>
                         : 
                             <>
@@ -179,7 +227,7 @@ export default function Profile() {
                                         className="w-[150px]"
                                         alt="Profile Picture"
                                     />
-                                    <label class="formbutton text-center">
+                                    <label className="formbutton text-center">
                                         <input
                                             className='hidden'
                                             type="file"
@@ -193,71 +241,64 @@ export default function Profile() {
                                         Upload
                                     </label>
                                     {
-                                        selectedImage ? 
+                                        selectedImage && 
                                             <button className="formbutton" onClick={() => setSelectedImage(null)}>Reset</button>
-                                        : <></>
                                     }
                                 </div>
-                                
+
                                 <div className="flex flex-col ml-12 w-full">
                                     <div className='text-[24px] text-fontgray pb-1.5'>
-                                        Name: {user.username}
+                                        Name: {user.firstName + " " + user.lastName}
                                     </div>
                                     <div className='text-fontgray'>
                                         <div>Description:</div>
-                                        <textarea className="formlabel border-2 border-fontgray p-2 resize-none !outline-none"
+                                        <textarea 
+                                            className="formlabel border-2 border-fontgray p-2 resize-none !outline-none"
                                             id="description" 
                                             name="description" 
                                             rows="5" 
                                             cols="100" 
-                                            maxlength="300"
-                                            defaultValue={user.description}>
-                                        </textarea>
+                                            maxLength="300"
+                                            placeholder={user.description}
+                                            value={description} 
+                                            onChange={(e) => setDescription(e.target.value)} 
+                                        />
                                     </div>
                                 </div>
 
                                 <div className='w-fit flex flex-col justify-between'>
                                     <div className="flex flex-row-reverse">
-                                        <IconCheck stroke={2} color='#70cc66' onClick={(e) => {setEditMode(!editMode)}}/>
+                                    <IconCheck stroke={2} color='#70cc66' onClick={(e) => { e.preventDefault(); handleSave(); }} />
                                     </div>
                                     {
-                                        canDelete ? 
-                                            <>
-                                                <button className="formbutton bg-errorred"
-                                                    onClick={(e) => {if (confirm("Do you want to delete your account?")) navigate("/login")}}>
-                                                    Delete User
-                                                </button>
-                                            </> 
-                                        : <></>
+                                        canDelete && 
+                                            <button className="formbutton bg-errorred"
+                                                onClick={() => {if (confirm("Do you want to delete your account?")) navigate("/login")}}>
+                                                Delete User
+                                            </button>
                                     }
                                 </div>
                             </>
                     }
                 </div>
+                {/* Student view - includes their reservations  */}
+                {user.role === "student" && (
+                <div className="mt-4">
+                    <table className="table-auto w-full">
+                        <thead className="shadow shadow-sm">
+                            <tr className="bg-bgblue">
+                                {columnHeader.map((column, i) => (
+                                    <th key={i} className="text-left font-semibold py-2 px-4">{column.label}</th>
+                                ))}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {reservationVisuals}
+                        </tbody>
+                    </table>
+                </div>
+            )}
             </div>
-            {
-                user.type == "student" ? 
-                    <>
-                        <div className="flex flex-col border-2 border-bgblue mt-4 p-4 rounded-lg">
-                            <div className='font-bold text-[24px] text-fontgray pb-1.5'>
-                                Reservations
-                            </div>
-                            <table className={`w-3/5 table-auto my-3 rounded-sm bg-white border-solid border-2 border-bgblue text-left text-fontgray border-separate border-spacing-0`}>
-                                <thead className="shadow shadow-sm">
-                                    <tr className={`bg-bgblue`}>
-                                        {header}
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {reservationVisuals}
-                                </tbody>
-                            </table>
-                        </div>
-                    </>
-                : <></>
-            }
-            
         </>
-        
     );
 }
