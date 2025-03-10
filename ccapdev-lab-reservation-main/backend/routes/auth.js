@@ -7,9 +7,14 @@ const router = express.Router();
 
 // Register route
 router.post('/register', async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, confirmPassword } = req.body;
   console.log("Received:", req.body); // 🔍 Debug incoming request
   
+  // Check if passwords match
+  if (password !== confirmPassword) {
+    return res.status(400).json({ message: '❌ Passwords do not match' });
+  }
+
   try {
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -29,6 +34,7 @@ router.post('/register', async (req, res) => {
     res.status(201).json({ 
       success: true, 
       message: '✅ Registration successful! Welcome aboard!' });
+
   } catch (err) {
     console.error('Error during registration:', err);
     res.status(500).json({ message: 'Internal server error' });
