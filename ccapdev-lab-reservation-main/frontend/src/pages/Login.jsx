@@ -91,12 +91,6 @@ export default function LoginPage() {
                     </form>
                 </div>
             
-Some of the most common mistakes during MCO1:
-<ul>
-<li>Some registration pages forgot to add a confirm password.</li>
-<li>The edit pages and delete buttons are needed.</li>
-<li>For lab reservation, try to visualize how it would be used by the technician, not only a student/user.</li>
-</ul>
             </div>
         </div  >
     );
