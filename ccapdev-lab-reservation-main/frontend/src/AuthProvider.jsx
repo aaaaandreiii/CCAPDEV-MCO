@@ -5,7 +5,7 @@ const AuthContext = createContext();
 
 const AuthProvider = ({children}) => {
     const [user, setUser] = useState(() => {
-        return JSON.parse(localStorage.getItem("user")) ?? null;
+        return JSON.stringify(localStorage.getItem("user")) ?? null;
     });
 
     const [errorMessage, setErrorMessage] = useState("");
