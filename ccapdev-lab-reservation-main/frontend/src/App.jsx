@@ -39,6 +39,7 @@ const router = createBrowserRouter(
 );
 
 function App() {
+    document.title = 'BookLabs Home';
     return <RouterProvider router={router}/>;
 }
 
