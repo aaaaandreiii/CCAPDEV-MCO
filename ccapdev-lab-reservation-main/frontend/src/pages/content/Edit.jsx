@@ -1,18 +1,20 @@
-
 import { useAuth } from '../../AuthProvider.jsx';
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Select from 'react-select';
 import { useSnackbar } from "notistack";
+import { useParams } from 'react-router-dom';
 
 export default function Edit() {
     const { enqueueSnackbar } = useSnackbar();
+    const { id } = useParams();
+    const [loading, setLoading] = useState(false);
 
     const auth = useAuth();
     const [isLab, setIsLab] = useState(false);
 
     const [error, setError] = useState("");
-    const rooms = [{label: "G306-A", value: "G306-A"}, {label: "G306-B", value: "G306-B"}, {label: "G308", value: "G308"}];
+    const rooms = [{ label: "GK301", value: "GK301" }, { label: "GK404", value: "GK404" }, { label: "GK304A", value: "GK304A" }];
 
     //TODO: replace with actual data
     const [email, setEmail] = useState("john@dlsu.edu.ph");
@@ -23,9 +25,11 @@ export default function Edit() {
     const [days, setDays] = useState([]);
     const [selectedDay, setSelectedDay] = useState(null);
     const [times, setTimes] = useState([]);
+    const [reservation, setReservation] = useState(null);
 
     //TODO: replace with actual data
     const [selectedTime, setSelectedTime] = useState([{label:"7:00 - 7:30", value:"7:00 - 7:30"}, {label:"7:30 - 8:00", value:"7:30 - 8:00"}, {label:"9:00 - 9:30", value:"9:00 - 9:30"}]);
+    const [selectedSeat, setSelectedSeat] = useState();
 
     const [seats, setSeats] = useState([]);
     const [seatVisuals, setSeatVisuals] = useState([]);
@@ -100,33 +104,95 @@ export default function Edit() {
           setTimes(options);
             
     });
-
-    const getSeats = (async () => {
-        //TODO: query server and check availability of seats
-
-        //TODO: replace with actual data
-        var names = ["juan@dlsu.edu.ph", "anonymous", "jane@dlsu.edu.ph", "mary@dlsu.edu.ph"]
-
-        if (seats.length == 0) {
-            var lab = []
-            for (let i = 1; i <= 10; i++) {
-                let available = i > names.length;
-                let reservedTo = ""
-                if (names[i-1]) {
-                    reservedTo = names[i-1];
+    
+    useEffect(() => {
+        console.log("Reservation ID:", id);
+        const fetchReservation = async () => {
+            try {
+                const response = await fetch(`http://localhost:5000/api/reservations/edit/${id}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
                 }
-                lab.push({seat: i.toString().padStart(2,"0"), available: available, selected: false, reservedTo:reservedTo});
+                const data = await response.json();
+                setReservation(data);  
+
+                setSelectedRoom(rooms.find(room => room.value === data.labID));
+    
+                const startDate = new Date(data.startTime);  
+                const endDate = new Date(data.endTime);     
+
+                if (isNaN(startDate) || isNaN(endDate)) {
+                    throw new Error("Invalid date format");
+                }
+    
+                setSelectedDay({
+                    label: startDate.toLocaleDateString(), // Format as date string
+                    value: startDate,
+                });
+    
+                // Set the start and end times
+                const startTimeLabel = `${startDate.getHours()}:${startDate.getMinutes().toString().padStart(2, '0')}`;
+                const endTimeLabel = `${endDate.getHours()}:${endDate.getMinutes().toString().padStart(2, '0')}`;
+                    
+                setSelectedTime([
+                    { label: `${startTimeLabel} - ${endTimeLabel}`, value: {startDate, endDate}}
+                ]);
+    
+                setSelectedSeat(data.seatNumber);
+/*
+                // sets email (if not anonymous) - for technician view
+                if (!data.isAnonymous) {
+//                    const userResponse = await fetch(`/api/users/${data.userID}`);
+                    const userData = await userResponse.json();
+                    setEmail(userData.email);
+                }
+  */  
+            getSeats(selectedSeat, data.userID);  
+
+    
+            } catch (error) {
+                console.error("Error fetching reservation:", error);
+                enqueueSnackbar("Failed to fetch reservation data.", { variant: 'error' });
             }
+        };
+    
+        fetchReservation();
+    }, [id]);       
 
-            //TODO: replace with actual data
-            lab[7].selected = true;
-
-            setSeats(lab);
-        } else {
-            setSeats([...seats]);
+    const getSeats = useCallback(async (selectedSeatNumber, userID) => {
+        setLoading(true); 
+        try {
+            const response = await fetch(`http://localhost:5000/api/lab/${selectedRoom.value}`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const lab = await response.json();
+    
+            const capacity = lab.lab.capacity; 
+    
+            const seatData = [];
+            for (let i = 1; i <= capacity; i++) {
+                seatData.push({
+                    seat: i.toString().padStart(2, "0"),
+                    available: i !== selectedSeatNumber, 
+                    selected: i === selectedSeatNumber, 
+                    reservedTo: i === selectedSeatNumber ? userID : null, 
+                });
+            }
+    
+            setSeats(seatData);
+        } catch (error) {
+            console.error("Error fetching seats:", error);
+            setError(error.message);
+        } finally {
+            setLoading(false);  
         }
-    });
-
+    }, [selectedRoom]);
+        
+        useEffect(() => {
+            getSeats(); 
+        }, [getSeats]);
+    
     const getSeatVisuals = (() => {
         var labVisuals = [];
 
