@@ -1,6 +1,15 @@
 const mongoose = require('mongoose');
 const Lab = require('../models/Lab');
 
+exports.getAllLabs = async (req, res) => {
+    try {
+        const labs = await Lab.find();
+        res.json(labs);
+    } catch (error) {
+        res.status(500).json({ error: "Internal server error" });
+    }
+};
+
 exports.getLabById = async (req, res) => {
     const { labID } = req.params;
 
@@ -27,14 +36,7 @@ exports.getLabById = async (req, res) => {
 // const Lab = require('../models/Lab');
 
 // //get all labs
-// exports.getAllLabs = async (req, res) => {
-//     try {
-//         const labs = await Lab.find();
-//         res.json(labs);
-//     } catch (error) {
-//         res.status(500).json({ error: "Internal server error" });
-//     }
-// };
+
 
 // //get a specific lab by ID
 // exports.getLabById = async (req, res) => {
