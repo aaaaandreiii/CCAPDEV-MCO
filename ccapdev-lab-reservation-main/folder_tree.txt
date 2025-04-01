@@ -1,0 +1,89 @@
+ccapdev-lab-reservation-main
+|
++---backend
+|   .env
+|   package-lock.json
+|   package.json
+|   server.js
+|
++---controllers
+|       authController.js
+|       labController.js
+|       profileController.js
+|       reservationController.js
+|       userController.js
+|
++---models
+|       Lab.js
+|       Reservation.js
+|       ReservationByLabTechnician.js
+|       ReservationByUser.js
+|       User.js
+|
++---node_modules
++---routes
+|       auth.js
+|       authRoutes.js
+|       lab.js
+|       labRoutes.js
+|       profile.js
+|       profileRoutes.js
+|       reservationRoutes.js
+|       reservations.js
+|       userRoutes.js
+|       users.js
+|
++---frontend
+|   .gitignore
+|   package-lock.json
+|   package.json
+|   README.md
+|   tailwind.config.js
+|
++---node_modules
+│   ├───public
+│   │       favicon.ico
+│   │       index.html
+│   │       logo192.png
+│   │       logo512.png
+│   │       manifest.json
+│   │
+│   └───src
+│       │   App.jsx
+│       │   AuthProvider.jsx
+│       │   index.css
+│       │   index.html
+│       │   index.js
+│       │
+│       ├───assets
+│       │       logo.png
+│       │       pfp1.jpg
+│       │       pfp2.jpg
+│       │       pfp3.jpg
+│       │
+│       ├───components
+│       │       Navbar.jsx
+│       │       Table.jsx
+│       │
+│       └───pages
+│           │   Login.jsx
+│           │   LoginOrHome.jsx
+│           │   Page.jsx
+│           │   ProtectedRoute.jsx
+│           │   Register.jsx
+│           │   Root.jsx
+│           │
+│           └───content
+│                   Edit.jsx
+│                   Profile.jsx
+│                   Reservations.jsx
+│                   Reserve.jsx
+│                   Users.jsx
+│
+└───mongoDB JSON
+        Instructions.txt
+        User.Labs.json
+        User.ReservationsByLabTechnician.json
+        User.ReservationsByUser.json
+        User.UserInformation.json
+        User.Users.json

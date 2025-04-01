@@ -103,8 +103,22 @@ const AuthProvider = ({children}) => {
     );
 };
 
-export default AuthProvider;
+const login = async (credentials) => {
+    const response = await fetch(`${API_BASE_URL}/auth/login`, {
+        method: "POST",
+        body: JSON.stringify(credentials),
+        headers: { "Content-Type": "application/json" },
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+        document.cookie = `token=${data.token}; HttpOnly; Secure; SameSite=Strict`; // Use cookies instead
+        setUser(data.user);
+    }
+};
 
 export const useAuth = () => {
     return useContext(AuthContext);
 };
+
+export default AuthProvider;

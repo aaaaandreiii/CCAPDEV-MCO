@@ -11,4 +11,5 @@ const reservationByLabTechnicianSchema = new mongoose.Schema({
   updatedAt: { type: Date, default: Date.now }
 });
 
+reservationByLabTechnicianSchema.index({ labID: 1, startTime: 1 });
 module.exports = mongoose.model('ReservationByLabTechnician', reservationByLabTechnicianSchema, 'ReservationsByLabTechnician');

@@ -486,14 +486,49 @@ export default function Reserve() {
     // };
 
 
+    // const fetchSeats = async () => {
+    //     if (!selectedRoom || !selectedTime) return;
+    //     try {
+    //         const response = await axios.get(`http://localhost:5000/api/seats/${selectedRoom.value}/${selectedTime.value}`);
+            
+    //         console.log("Fetched seats:", response.data); // 🔥 Debugging log
+    
+    //         if (response.data.length === 0) {
+    //             setSeatVisuals([<p key="no-seats" className="text-red-500">No available seats</p>]);
+    //         } else {
+    //             setSeats(response.data);
+    //             setSeatVisuals(response.data.map(seat => (
+    //                 <button 
+    //                     key={seat} 
+    //                     className="bg-blue-500 text-white p-2 m-1 rounded"
+    //                     onClick={() => handleSeatSelection(seat)}
+    //                 >
+    //                     Seat {seat}
+    //                 </button>
+    //             )));
+    //         }
+    //     } catch (error) {
+    //         console.error('Error fetching seats:', error);
+    //     }
+    // };
+
     const fetchSeats = async () => {
-        if (!selectedRoom || !selectedTime) return;
+        if (!selectedRoom || !selectedTime) {
+            console.log("fetchSeats skipped: No selectedRoom or selectedTime");
+            return;
+        }
+    
+        // Ensure selectedRoom.value is a valid ObjectId
+        if (!selectedRoom.value.match(/^[0-9a-fA-F]{24}$/)) {
+            console.error("Invalid labID format:", selectedRoom.value);
+            return;
+        }
+    
         try {
             const response = await axios.get(`http://localhost:5000/api/seats/${selectedRoom.value}/${selectedTime.value}`);
-            
-            console.log("Fetched seats:", response.data); // 🔥 Debugging log
+            console.log("Fetched seats:", response.data);
     
-            if (response.data.length === 0) {
+            if (!response.data || response.data.length === 0) {
                 setSeatVisuals([<p key="no-seats" className="text-red-500">No available seats</p>]);
             } else {
                 setSeats(response.data);
@@ -511,6 +546,7 @@ export default function Reserve() {
             console.error('Error fetching seats:', error);
         }
     };
+    
     
 
     const handleSeatSelection = (seat) => {
