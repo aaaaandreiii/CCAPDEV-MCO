@@ -42,14 +42,19 @@ export default function Reserve() {
 
     const fetchRooms = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/labs');
+            const response = await axios.get(`${API_BASE_URL}/labs`);  // ✅ Check if `/labs` is the right endpoint
+            console.log("✅ Rooms API response:", response.data);
+            
             const roomOptions = response.data.map(lab => ({ label: lab.name, value: lab._id }));
+            console.log("✅ Formatted rooms:", roomOptions);
+    
             setRooms(roomOptions);
             setSelectedRoom(roomOptions[0] || null);
         } catch (error) {
-            console.error('Error fetching labs:', error);
+            console.error('❌ Error fetching labs:', error);
         }
     };
+    
 
     useEffect(() => {
         if (selectedRoom && selectedTime.length > 0) {
@@ -58,37 +63,40 @@ export default function Reserve() {
     }, [selectedRoom, selectedTime]);    
 
     useEffect(() => {
-        if (selectedRoom && selectedDay) {
-            console.log("🔍 Fetching available slots for room and day...");
-            fetchAvailableSlots();  // Fetch available slots if room and day are selected
+        if (selectedRoom && selectedDay && selectedTime.length > 0) {
+            console.log("🔍 Fetching available slots after selection...");
+            fetchAvailableSlots();
         }
-    }, [selectedRoom, selectedDay]);
+    }, [selectedRoom, selectedDay, selectedTime]);    
     
     const fetchAvailableSlots = async () => {
         if (!selectedRoom || !selectedDay) return;
     
-        console.log("🔍 Fetching available slots...");
+        console.log("🔍 Fetching available slots for Room:", selectedRoom.value, "Date:", selectedDay.value);
+    
         try {
-            const response = await axios.get(`http://localhost:5000/api/available-slots/${selectedRoom.value}/${selectedDay.value}`);
-            console.log("✅ Available slots response:", response.data);
+            const response = await axios.get(`${API_BASE_URL}/available-slots/${selectedRoom.value}/${selectedDay.value}`);
+            console.log("✅ Time Slots API response:", response.data);
+    
+            if (!response.data.length) {
+                console.warn("⚠️ No available time slots found!");
+            }
     
             const formattedSlots = response.data.map(slot => ({
                 label: `${new Date(slot.startTime).toLocaleTimeString()} - ${new Date(slot.endTime).toLocaleTimeString()}`,
                 value: slot.startTime
             }));
     
-            console.log("Formatted slots:", formattedSlots);
-    
+            console.log("✅ Formatted slots:", formattedSlots);
             setTimes(formattedSlots);
     
-            if (formattedSlots.length > 0 && !selectedTime) {
-                setSelectedTime(formattedSlots[0]);  // Set selected time if not already set
+            if (formattedSlots.length > 0) {
+                setSelectedTime(formattedSlots[0]);  // Auto-select first available slot
             }
         } catch (error) {
             console.error('❌ Error fetching available slots:', error);
         }
-    };
-    
+    };    
     
     useEffect(() => {
         if (times.length > 0) {
@@ -107,7 +115,6 @@ export default function Reserve() {
         }
     }, [selectedRoom, selectedTime]);
     
-    
     const fetchSeats = async () => {
         if (!selectedRoom?.value || selectedTime.length === 0) {
             console.log("⏳ Waiting for room & time selection...");
@@ -115,13 +122,14 @@ export default function Reserve() {
         }
     
         try {
-            const timeValues = selectedTime.map(time => time.value); // Extract values from array
-            console.log("Fetching seats for times:", timeValues);
+            const selectedTimeValue = selectedTime[0]?.value;  // Extract first selected time
+            console.log("Fetching seats for Room:", selectedRoom.value, "Time:", selectedTimeValue);
             
-            const response = await axios.get(`${API_BASE_URL}/seats/${selectedRoom.value}/${timeValues[0]}`);
+            const response = await axios.get(`${API_BASE_URL}/seats/${selectedRoom.value}/${selectedTimeValue}`);
             console.log("✅ Fetched seats:", response.data);
     
             if (!response.data.length) {
+                console.warn("⚠️ No available seats found!");
                 setSeatVisuals([<p key="no-seats" className="text-red-500">No available seats</p>]);
             } else {
                 setSeats(response.data);

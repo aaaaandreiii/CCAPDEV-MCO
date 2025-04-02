@@ -29,17 +29,23 @@ const io = require("socket.io")(server, {
 app.use(express.json());
 app.use("/api/seats", seatsRoutes);
 
-// Connect to MongoDB
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => console.log("✅ Connected to MongoDB"))
-  .catch((err) => console.error("❌ MongoDB connection error:", err));
+// mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/User', {
+//       useNewUrlParser: true,
+//       useUnifiedTopology: true
+//   }).then(() => console.log("✅ Database Connected"))
+//   .catch(err => console.error("❌ Database Connection Error:", err));
+
+
+mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/User', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
+
 
 app.use("/api/auth", authRoutes);
 app.use("/api/reservations", reservationRoutes);
 app.use("/api/labs", labRoutes);
 
-// Start the server using `server.listen`
 server.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
 
 io.on("connection", (socket) => {
@@ -59,6 +65,6 @@ io.on("connection", (socket) => {
 module.exports = {
   API_BASE_URL:
     process.env.NODE_ENV === "production"
-      ? "https://your-production-url.com/api"
+      ? "https://CCAPDEV-production-url.com/api"
       : "http://localhost:5000/api",
 };

@@ -3,12 +3,19 @@ const Lab = require('../models/Lab');
 
 exports.getAllLabs = async (req, res) => {
     try {
-        const labs = await Lab.find();
+        console.log("📡 Fetching all labs from database...");
+        const labs = await Lab.find();  // Is Lab model correct?
+        console.log("✅ Labs found:", labs);
         res.json(labs);
     } catch (error) {
-        res.status(500).json({ error: "Internal server error" });
+        console.error("❌ Error fetching labs:", error.message);
+        res.status(500).json({ 
+            error: "Internal server error", 
+            details: error.message 
+        });
     }
 };
+
 
 exports.getLabById = async (req, res) => {
     const { labID } = req.params;
