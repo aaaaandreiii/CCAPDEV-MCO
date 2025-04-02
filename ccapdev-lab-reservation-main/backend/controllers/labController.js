@@ -4,7 +4,7 @@ const Lab = require('../models/Lab');
 exports.getAllLabs = async (req, res) => {
     try {
         console.log("📡 Fetching all labs from database...");
-        const labs = await Lab.find();  // Is Lab model correct?
+        const labs = await Lab.find();
         console.log("✅ Labs found:", labs);
         res.json(labs);
     } catch (error) {

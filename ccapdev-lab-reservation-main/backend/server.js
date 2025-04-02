@@ -6,6 +6,7 @@ const authRoutes = require("./routes/authRoutes");
 const reservationRoutes = require("./routes/reservationRoutes");
 const labRoutes = require("./routes/labRoutes");
 const seatsRoutes = require("./routes/seatsRoutes");
+const availableSlotsRoutes = require("./routes/availableSlotsRoutes");
 
 require("dotenv").config();
 
@@ -19,6 +20,8 @@ app.use(cors({
     credentials: true
 }));
 
+app.use(availableSlotsRoutes);
+
 const io = require("socket.io")(server, {
   cors: {
       origin: "http://localhost:3000",
@@ -28,19 +31,15 @@ const io = require("socket.io")(server, {
 
 app.use(express.json());
 app.use("/api/seats", seatsRoutes);
-
-// mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/User', {
-//       useNewUrlParser: true,
-//       useUnifiedTopology: true
-//   }).then(() => console.log("✅ Database Connected"))
-//   .catch(err => console.error("❌ Database Connection Error:", err));
+app.use("/api/available-slots", availableSlotsRoutes);
 
 
 mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/User', {
     useNewUrlParser: true,
     useUnifiedTopology: true
-});
-
+})
+  .then(() => console.log("✅ Database Connected"))
+  .catch(err => console.error("❌ Database Connection Error:", err));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/reservations", reservationRoutes);

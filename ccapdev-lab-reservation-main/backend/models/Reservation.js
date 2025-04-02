@@ -1,30 +1,12 @@
-//TO DELETE
-  //no need anymore bc separated to reservationByUser and reservationByLabTechnician
-
-// const mongoose = require('mongoose');
-
-// const reservationSchema = new mongoose.Schema({
-//   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-//   labId: { type: mongoose.Schema.Types.ObjectId, ref: 'Lab', required: true },
-//   startTime: { type: Date, required: true },
-//   endTime: { type: Date, required: true },
-//   seatNumber: Number,
-//   isAnonymous: Boolean,
-//   createdAt: { type: Date, default: Date.now }
-// });
-
-// module.exports = mongoose.model('Reservation', reservationSchema);
-
 const mongoose = require("mongoose");
 
 const ReservationSchema = new mongoose.Schema({
     userID: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
     labID: { type: mongoose.Schema.Types.ObjectId, ref: "Lab", required: true },
     seatNumber: { type: String, required: true },
-    startTime: { type: Date, required: true },
-    endTime: { type: Date, required: true },
-    isAnonymous: { type: Boolean, default: false },
-    reservationDate: { type: Date, default: Date.now }
+    startTime: { type: String, required: true }, // e.g., "07:00"
+    endTime: { type: String, required: true },   // e.g., "07:30"
+    reservationDate: { type: String, required: true } // Format: "YYYY-MM-DD"
 });
 
 module.exports = mongoose.model("Reservation", ReservationSchema);
