@@ -1,22 +1,33 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const http = require("http"); // ✅ Import http module
+const http = require("http");
 const authRoutes = require("./routes/authRoutes");
 const reservationRoutes = require("./routes/reservationRoutes");
 const labRoutes = require("./routes/labRoutes");
+const seatsRoutes = require("./routes/seatsRoutes");
 
 require("dotenv").config();
 
 const PORT = process.env.PORT || 5000;
 const app = express();
-const server = http.createServer(app); // ✅ Create the server before using socket.io
+const server = http.createServer(app);
+
+app.use(cors({
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true
+}));
+
 const io = require("socket.io")(server, {
-  cors: { origin: "http://localhost:5000" }
+  cors: {
+      origin: "http://localhost:3000",
+      methods: ["GET", "POST"]
+  }
 });
 
-app.use(cors());
 app.use(express.json());
+app.use("/api/seats", seatsRoutes);
 
 // Connect to MongoDB
 mongoose

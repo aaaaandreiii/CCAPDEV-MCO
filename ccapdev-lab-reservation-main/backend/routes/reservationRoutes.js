@@ -3,12 +3,10 @@ const router = express.Router();
 const reservationController = require("../controllers/reservationController");
 const { authenticateUser } = require("../middleware/authMiddleware");
 
-if (!reservationController.getAllReservations) {
-  throw new Error("reservationController.getAllReservations is undefined");
-}
-
+router.get("/:labID", reservationController.getReservationsByLab);
+router.post("/", authenticateUser, reservationController.createReservation);
 router.get("/", authenticateUser, reservationController.getAllReservations);
-router.post("/reserve", authenticateUser, reservationController.reserveSlotByUser);
-router.delete("/:id", authenticateUser, reservationController.removeUserReservation);
+router.post("/reserve", authenticateUser, reservationController.createReservation);
+router.delete("/:reservationID", authenticateUser, reservationController.removeUserReservation);
 
 module.exports = router;

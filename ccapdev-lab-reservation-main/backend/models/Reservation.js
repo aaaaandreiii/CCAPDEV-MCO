@@ -14,3 +14,17 @@
 // });
 
 // module.exports = mongoose.model('Reservation', reservationSchema);
+
+const mongoose = require("mongoose");
+
+const ReservationSchema = new mongoose.Schema({
+    userID: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+    labID: { type: mongoose.Schema.Types.ObjectId, ref: "Lab", required: true },
+    seatNumber: { type: String, required: true },
+    startTime: { type: Date, required: true },
+    endTime: { type: Date, required: true },
+    isAnonymous: { type: Boolean, default: false },
+    reservationDate: { type: Date, default: Date.now }
+});
+
+module.exports = mongoose.model("Reservation", ReservationSchema);
