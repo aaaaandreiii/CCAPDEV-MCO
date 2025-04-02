@@ -4,40 +4,52 @@ const jwt = require('jsonwebtoken');
 require("dotenv").config(); 
 
 exports.register = async (req, res) => {
-    const { email, password, confirmPassword } = req.body;
+    const { email, password, confirmPassword, role } = req.body;  
+
     if (password !== confirmPassword) {
-        return res.status(400).json({ message: '❌ Passwords do not match' });
+        console.log("passed password:", password);
+        console.log("passed confirm password:", confirmPassword);
+        return res.status(400).json({ message: "❌ Passwords do not match" });
     }
 
     try {
-        const existingUser = await User.findOne({ email });
-        if (existingUser) return res.status(400).json({ message: '❌ Email already registered' });
+        console.log("Checking for existing email:", email);
+        const existingUser = await User.findOne({ email: email.trim().toLowerCase() });
+        console.log("User found?", existingUser);
+
+        if (existingUser) {
+            console.log("User already exists, rejecting request.");
+            return res.status(400).json({ message: "Email has been registered already" });
+        }
+
+        console.log("Proceeding with registration...");
 
         const salt = await bcrypt.genSalt(12);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        const newUser = new User({ email, password: hashedPassword });
+        const userRole = role || "student";
+
+        const newUser = new User({ email, password: hashedPassword, role: userRole });
+
         await newUser.save();
-        res.status(201).json({ success: true, message: '✅ Registration successful!' });
+        console.log("✅ User registered successfully!");
+
+        return res.status(201).json({ success: true, message: "✅ Registration successful!" });
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        console.error("❌ Registration failed:", error.message);
+        return res.status(500).json({ message: "Registration failed", error: error.message });
     }
 };
 
 exports.login = async (req, res) => {
     const { email, password } = req.body;
     try {
-        // const user = await User.findOne({ email, isDeleted: false });
         const user = await User.findOne({ email });
         if (!user) return res.status(404).json({ error: 'User not found' });
 
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) return res.status(400).json({ message: 'Invalid password' });
 
-        // const isMatch = await bcrypt.compare(password, user.password);
-        // if (!isMatch) return res.status(401).json({ error: 'Invalid credentials' });
-        // const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
-        
         const token = jwt.sign(
             { id: user._id, email: user.email, role: user.role },
             process.env.JWT_SECRET,

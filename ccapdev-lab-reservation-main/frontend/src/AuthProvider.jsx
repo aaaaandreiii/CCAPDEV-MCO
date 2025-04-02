@@ -1,7 +1,6 @@
 import { useContext, createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-// Create the AuthContext
 const AuthContext = createContext(null);
 
 export function useAuth() {
@@ -20,8 +19,36 @@ const AuthProvider = ({ children }) => {
     const [errorMessage, setErrorMessage] = useState("");
     const navigate = useNavigate();
 
-    const loginAction = async (email, password, remember) => {
+    const registerAction = async (email, password, confirmPassword) => {
         setErrorMessage(""); // Clear previous errors
+    
+        email = email.trim().toLowerCase();
+    
+        try {
+            const response = await fetch("http://localhost:5000/api/auth/register", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password, confirmPassword }),
+            });
+    
+            const data = await response.json();
+    
+            if (!response.ok) {
+                console.error("Server Error:", data.message);
+                throw new Error(data.message || "Registration failed");
+            }
+    
+            alert(data.message);
+            navigate("/login");
+        } catch (error) {
+            console.error("❌ Registration error:", error.message);
+            setErrorMessage(error.message);
+            alert(error.message);
+        }
+    };    
+
+    const loginAction = async (email, password, remember) => {
+        setErrorMessage("");
 
         try {
             const response = await fetch("http://localhost:5000/api/auth/login", {
@@ -71,7 +98,7 @@ const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ user, loginAction, logoutAction, errorMessage }}>
+        <AuthContext.Provider value={{ user, loginAction, logoutAction, registerAction, errorMessage }}>
             {children}
         </AuthContext.Provider>
     );

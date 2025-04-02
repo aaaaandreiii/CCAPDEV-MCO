@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { hashId } = require("../utils/hashUtils");
 
 const userSchema = new mongoose.Schema({
-  name: { type: String, required: true },
+  name: { type: String },
   email: { type: String, unique: true, required: true, match: /@dlsu\.edu\.ph$/ },
   password: { type: String, required: true },
   role: { type: String, enum: ['student', 'technician'], required: true },
